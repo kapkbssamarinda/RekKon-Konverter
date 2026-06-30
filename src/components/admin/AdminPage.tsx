@@ -18,6 +18,8 @@ export function AdminPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [modal, setModal] = useState<ModalState>({ open: false });
+  const [deleteTarget, setDeleteTarget] = useState<{ userId: string; username: string } | null>(null);
+  const [deleteError, setDeleteError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!token) return;
@@ -41,18 +43,25 @@ export function AdminPage() {
     }
   }
 
-  async function handleDelete(userId: string, username: string) {
-    if (!confirm(`Hapus user "${username}"? Tindakan ini tidak bisa dibatalkan.`)) return;
+  function handleDelete(userId: string, username: string) {
+    setDeleteError(null);
+    setDeleteTarget({ userId, username });
+  }
+
+  async function confirmDelete() {
+    if (!deleteTarget) return;
+    setDeleteError(null);
     try {
-      const res = await fetch(`/api/admin/users/${userId}`, {
+      const res = await fetch(`/api/admin/users/${deleteTarget.userId}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token!}` },
       });
       const body = (await res.json()) as { ok: boolean; error?: string };
       if (!body.ok) throw new Error(body.error ?? 'Gagal menghapus user');
-      setUsers(prev => prev.filter(u => u.id !== userId));
+      setUsers(prev => prev.filter(u => u.id !== deleteTarget.userId));
+      setDeleteTarget(null);
     } catch (err) {
-      alert(err instanceof Error ? err.message : 'Terjadi kesalahan');
+      setDeleteError(err instanceof Error ? err.message : 'Terjadi kesalahan');
     }
   }
 
@@ -154,28 +163,30 @@ export function AdminPage() {
             <div className="flex items-center gap-2">
               <button
                 onClick={() => setPage('app')}
+                aria-label="Buka Converter"
                 className="flex items-center justify-center gap-1.5 w-9 h-9 sm:w-auto sm:h-auto sm:px-3.5 sm:py-2 rounded-xl font-body text-[13px] font-medium transition-all"
                 style={{ background: 'rgba(255,255,255,0.07)', color: '#CBD5E1', border: '1px solid rgba(255,255,255,0.1)' }}
                 onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = 'rgba(255,255,255,0.12)'; }}
                 onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = 'rgba(255,255,255,0.07)'; }}
               >
-                <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
+                <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                   <rect x="1" y="3" width="14" height="10" rx="2" stroke="currentColor" strokeWidth="1.5" />
                   <path d="M4 7h8M4 10h5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                 </svg>
-                <span className="hidden sm:inline">Converter</span>
+                <span className="hidden sm:inline" aria-hidden="true">Converter</span>
               </button>
               <button
                 onClick={logout}
+                aria-label="Logout"
                 className="flex items-center justify-center gap-1.5 w-9 h-9 sm:w-auto sm:h-auto sm:px-3.5 sm:py-2 rounded-xl font-body text-[13px] font-medium transition-all"
                 style={{ background: 'rgba(239,68,68,0.1)', color: '#FCA5A5', border: '1px solid rgba(239,68,68,0.2)' }}
                 onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = 'rgba(239,68,68,0.18)'; }}
                 onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = 'rgba(239,68,68,0.1)'; }}
               >
-                <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
+                <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                   <path d="M6 3H3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h3M10 11l3-3-3-3M13 8H6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-                <span className="hidden sm:inline">Logout</span>
+                <span className="hidden sm:inline" aria-hidden="true">Logout</span>
               </button>
             </div>
           </div>
@@ -244,6 +255,37 @@ export function AdminPage() {
               Tambah User
             </button>
           </div>
+
+          {deleteTarget && (
+            <div
+              className="px-4 sm:px-6 py-3 animate-error-in flex flex-col gap-2"
+              style={{ borderBottom: '1px solid #FEE2E2', background: '#FEF2F2' }}
+              role="alert"
+            >
+              <div className="flex items-center gap-3">
+                <p className="font-body text-[13px] flex-1" style={{ color: '#DC2626' }}>
+                  Hapus user <strong>"{deleteTarget.username}"</strong>? Tindakan ini tidak bisa dibatalkan.
+                </p>
+                <div className="flex gap-2 flex-shrink-0">
+                  <button
+                    onClick={() => { setDeleteTarget(null); setDeleteError(null); }}
+                    className="font-body text-[12px] font-medium px-3 py-1.5 rounded-lg transition-colors"
+                    style={{ background: '#F1F5F9', color: '#64748B' }}
+                  >
+                    Batal
+                  </button>
+                  <button
+                    onClick={confirmDelete}
+                    className="font-body text-[12px] font-medium px-3 py-1.5 rounded-lg transition-colors text-white"
+                    style={{ background: '#DC2626' }}
+                  >
+                    Hapus
+                  </button>
+                </div>
+              </div>
+              {deleteError && <ErrorBanner message={deleteError} />}
+            </div>
+          )}
 
           {isLoading ? (
             <div className="flex items-center justify-center py-16">

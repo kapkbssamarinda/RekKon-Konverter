@@ -5,7 +5,7 @@ interface Props {
 
 const SIZE_CLASS = { sm: 'w-1.5 h-1.5', md: 'w-2 h-2' };
 
-export function LoadingDots({ color = '#3B82F6', size = 'md' }: Props) {
+export function LoadingDots({ color = 'var(--color-accent)', size = 'md' }: Props) {
   return (
     <div className="flex gap-1.5">
       {[0, 200, 400].map(delay => (

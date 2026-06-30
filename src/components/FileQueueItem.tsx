@@ -133,14 +133,15 @@ export function FileQueueItem({ item, onRemove }: Props) {
         <button
           onClick={() => onRemove(item.id)}
           className="
-            flex-shrink-0 w-8 h-8 rounded-lg 
+            flex-shrink-0 w-11 h-11 rounded-lg
             flex items-center justify-center
             transition-all duration-150
           "
-          style={{ 
+          style={{
             background: '#F8FAFC',
             color: '#94A3B8'
           }}
+          aria-label={`Hapus file ${item.name}`}
           title="Remove"
         >
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none">

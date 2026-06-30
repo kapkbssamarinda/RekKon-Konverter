@@ -178,8 +178,9 @@ export function UserList({ users, currentUserId, onEdit, onDelete }: Props) {
             <div className="flex items-center justify-end gap-1">
               <button
                 onClick={() => onEdit(u)}
-                className="w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-100"
+                className="w-11 h-11 rounded-lg flex items-center justify-center transition-all duration-100"
                 style={{ color: '#64748B' }}
+                aria-label={`Edit user ${u.username}`}
                 title="Edit"
                 onMouseEnter={e => {
                   const el = e.currentTarget as HTMLButtonElement;
@@ -200,8 +201,9 @@ export function UserList({ users, currentUserId, onEdit, onDelete }: Props) {
               {!isSelf && (
                 <button
                   onClick={() => onDelete(u.id, u.username)}
-                  className="w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-100"
+                  className="w-11 h-11 rounded-lg flex items-center justify-center transition-all duration-100"
                   style={{ color: '#64748B' }}
+                  aria-label={`Hapus user ${u.username}`}
                   title="Hapus"
                   onMouseEnter={e => {
                     const el = e.currentTarget as HTMLButtonElement;

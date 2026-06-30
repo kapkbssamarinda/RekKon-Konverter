@@ -1,4 +1,4 @@
-import { useMemo, useEffect } from 'react';
+import { useMemo, useEffect, useState } from 'react';
 import { DropZone } from './components/DropZone';
 import { FileQueue } from './components/FileQueue';
 import { PreviewTable } from './components/PreviewTable';
@@ -9,6 +9,7 @@ import { LoginPage } from './components/auth/LoginPage';
 import { AdminPage } from './components/admin/AdminPage';
 import { LoadingDots } from './components/ui/LoadingDots';
 import { IconBox } from './components/ui/IconBox';
+import { ErrorBanner } from './components/ui/ErrorBanner';
 import { useFileProcessor } from './hooks/useFileProcessor';
 import { useAuth } from './hooks/useAuth';
 import { exportToExcel } from './services/excelExporter';
@@ -42,6 +43,7 @@ function LoadingScreen() {
 function App() {
   const { status, user, page, setPage, logout } = useAuth();
   const { files, statements, addFiles, removeFile, reset } = useFileProcessor();
+  const [exportError, setExportError] = useState<string | null>(null);
 
   // Clear converter state whenever a different user logs in
   useEffect(() => {
@@ -57,10 +59,11 @@ function App() {
 
   function handleExport() {
     if (statements.length === 0) return;
+    setExportError(null);
     try {
       exportToExcel(statements);
     } catch (err) {
-      alert(err instanceof Error ? err.message : 'Gagal mengekspor Excel');
+      setExportError(err instanceof Error ? err.message : 'Gagal mengekspor Excel');
     }
   }
 
@@ -164,6 +167,7 @@ function App() {
               {user?.role === 'admin' && (
                 <button
                   onClick={() => setPage('admin')}
+                  aria-label="Buka halaman Admin"
                   className="flex items-center justify-center gap-1.5 font-body text-[12px] w-9 h-9 sm:w-auto sm:h-auto sm:px-3 sm:py-1.5 rounded-lg transition-all"
                   style={{
                     background: 'rgba(139,92,246,0.12)',
@@ -173,18 +177,19 @@ function App() {
                   onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = 'rgba(139,92,246,0.2)'; }}
                   onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = 'rgba(139,92,246,0.12)'; }}
                 >
-                  <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+                  <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                     <circle cx="6" cy="6" r="3" stroke="currentColor" strokeWidth="1.5"/>
                     <circle cx="12" cy="6" r="3" stroke="currentColor" strokeWidth="1.5"/>
                     <path d="M0 14c0-2.5 2.7-4 6-4s6 1.5 6 4M9 12c.4-.8 1.6-2 3-2s2.6 1.2 3 2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
                   </svg>
-                  <span className="hidden sm:inline">Admin</span>
+                  <span className="hidden sm:inline" aria-hidden="true">Admin</span>
                 </button>
               )}
 
               {/* Logout button — icon+text on desktop, icon-only on mobile */}
               <button
                 onClick={logout}
+                aria-label="Logout"
                 className="flex items-center justify-center gap-1.5 font-body text-[12px] w-9 h-9 sm:w-auto sm:h-auto sm:px-3 sm:py-1.5 rounded-lg transition-all"
                 style={{
                   background: 'rgba(255,255,255,0.05)',
@@ -194,10 +199,10 @@ function App() {
                 onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.color = '#FCA5A5'; (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(239,68,68,0.3)'; }}
                 onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.color = '#94A3B8'; (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(255,255,255,0.1)'; }}
               >
-                <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                   <path d="M6 3H3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h3M10 11l3-3-3-3M13 8H6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
-                <span className="hidden sm:inline">Logout</span>
+                <span className="hidden sm:inline" aria-hidden="true">Logout</span>
               </button>
 
               <div
@@ -236,6 +241,13 @@ function App() {
         {statements.length > 0 && (
           <div className="mt-10 animate-fade-in-up">
             <PreviewTable statements={statements} />
+          </div>
+        )}
+
+        {/* Export error */}
+        {exportError && (
+          <div className="mt-6 animate-error-in">
+            <ErrorBanner message={exportError} />
           </div>
         )}
 

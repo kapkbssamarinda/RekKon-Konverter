@@ -14,13 +14,13 @@ export function StepIndicator({ step }: Props) {
   const currentIndex = STEPS.findIndex(s => s.key === step);
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-2" aria-label="Langkah konversi">
       {STEPS.map((s, i) => {
         const isActive = i === currentIndex;
         const isDone = i < currentIndex;
 
         return (
-          <div key={s.key} className="flex items-center gap-2">
+          <div key={s.key} className="flex items-center gap-2" aria-current={isActive ? 'step' : undefined}>
             <div className="flex items-center gap-2">
               {/* Step Circle */}
               <div

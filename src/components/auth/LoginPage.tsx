@@ -107,10 +107,11 @@ export function LoginPage() {
           {/* Form */}
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             <div className="flex flex-col gap-1.5">
-              <label className="font-body font-medium text-[13px]" style={{ color: '#374151' }}>
+              <label htmlFor="login-username" className="font-body font-medium text-[13px]" style={{ color: '#374151' }}>
                 Username
               </label>
               <input
+                id="login-username"
                 type="text"
                 value={username}
                 onChange={e => setUsername(e.target.value)}
@@ -123,10 +124,11 @@ export function LoginPage() {
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="font-body font-medium text-[13px]" style={{ color: '#374151' }}>
+              <label htmlFor="login-password" className="font-body font-medium text-[13px]" style={{ color: '#374151' }}>
                 Password
               </label>
               <input
+                id="login-password"
                 type="password"
                 value={password}
                 onChange={e => setPassword(e.target.value)}
@@ -168,7 +170,9 @@ export function LoginPage() {
         >
           Format rekening koran yang didukung
         </p>
-        <div className="relative overflow-hidden pb-5">
+        {/* sr-only list of supported banks for screen readers */}
+        <p className="sr-only">BNI, BRI, Bank Mandiri</p>
+        <div className="relative overflow-hidden pb-5" aria-hidden="true">
           {/* Left fade mask */}
           <div
             className="absolute inset-y-0 left-0 w-20 z-10 pointer-events-none"
@@ -189,7 +193,7 @@ export function LoginPage() {
               >
                 <img
                   src={bank.src}
-                  alt={bank.name}
+                  alt=""
                   style={{
                     height: '28px',
                     width: 'auto',

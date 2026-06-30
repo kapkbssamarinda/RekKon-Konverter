@@ -1,4 +1,4 @@
-import { useState, useEffect, type FormEvent } from 'react';
+import { useState, useEffect, useRef, type FormEvent } from 'react';
 import type { PublicUser } from '../../types/auth';
 import { ErrorBanner } from '../ui/ErrorBanner';
 
@@ -67,6 +67,8 @@ export function UserModal({ mode, user, token, onSuccess, onClose }: Props) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const modalRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     if (!isTrial) {
       setTrialExpiresAt('');
@@ -75,6 +77,30 @@ export function UserModal({ mode, user, token, onSuccess, onClose }: Props) {
       setTrialMode('date');
     }
   }, [isTrial]);
+
+  useEffect(() => {
+    const modal = modalRef.current;
+    if (!modal) return;
+    const prev = document.activeElement as HTMLElement;
+    const focusable = () => Array.from(modal.querySelectorAll<HTMLElement>(
+      'button:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    ));
+    focusable()[0]?.focus();
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === 'Escape') { onClose(); return; }
+      if (e.key !== 'Tab') return;
+      const all = focusable();
+      const first = all[0];
+      const last = all[all.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault(); last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault(); first.focus();
+      }
+    }
+    document.addEventListener('keydown', handleKeyDown);
+    return () => { document.removeEventListener('keydown', handleKeyDown); prev?.focus(); };
+  }, [onClose]);
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -137,17 +163,22 @@ export function UserModal({ mode, user, token, onSuccess, onClose }: Props) {
       onClick={e => { if (e.target === e.currentTarget) onClose(); }}
     >
       <div
+        ref={modalRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-heading"
         className="w-full max-w-[480px] rounded-2xl p-5 sm:p-6 animate-fade-in-scale max-h-[90dvh] overflow-y-auto"
         style={{ background: '#FFFFFF', border: '1px solid #E2E8F0', boxShadow: '0 20px 60px rgba(15,23,42,0.2)' }}
       >
         {/* Modal Header */}
         <div className="flex items-center justify-between mb-6">
-          <h2 className="font-headline font-semibold text-[18px]" style={{ color: '#0F172A' }}>
+          <h2 id="modal-heading" className="font-headline font-semibold text-[18px]" style={{ color: '#0F172A' }}>
             {mode === 'create' ? 'Tambah User' : 'Edit User'}
           </h2>
           <button
             onClick={onClose}
-            className="w-8 h-8 rounded-lg flex items-center justify-center transition-colors"
+            aria-label="Tutup modal"
+            className="w-11 h-11 rounded-lg flex items-center justify-center transition-colors"
             style={{ color: '#64748B' }}
             onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = '#F1F5F9'; }}
             onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = 'transparent'; }}
@@ -161,8 +192,9 @@ export function UserModal({ mode, user, token, onSuccess, onClose }: Props) {
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           {/* Username */}
           <div className="flex flex-col gap-1.5">
-            <label className="font-body font-medium text-[13px]" style={{ color: '#374151' }}>Username</label>
+            <label htmlFor="um-username" className="font-body font-medium text-[13px]" style={{ color: '#374151' }}>Username</label>
             <input
+              id="um-username"
               type="text"
               value={username}
               onChange={e => setUsername(e.target.value)}
@@ -178,13 +210,14 @@ export function UserModal({ mode, user, token, onSuccess, onClose }: Props) {
 
           {/* Password */}
           <div className="flex flex-col gap-1.5">
-            <label className="font-body font-medium text-[13px]" style={{ color: '#374151' }}>
+            <label htmlFor="um-password" className="font-body font-medium text-[13px]" style={{ color: '#374151' }}>
               Password{' '}
               {mode === 'edit' && (
                 <span style={{ color: '#64748B', fontWeight: 400 }}>— kosongkan jika tidak diubah</span>
               )}
             </label>
             <input
+              id="um-password"
               type="password"
               value={password}
               onChange={e => setPassword(e.target.value)}
@@ -199,8 +232,9 @@ export function UserModal({ mode, user, token, onSuccess, onClose }: Props) {
 
           {/* Role */}
           <div className="flex flex-col gap-1.5">
-            <label className="font-body font-medium text-[13px]" style={{ color: '#374151' }}>Role</label>
+            <label htmlFor="um-role" className="font-body font-medium text-[13px]" style={{ color: '#374151' }}>Role</label>
             <select
+              id="um-role"
               value={role}
               onChange={e => setRole(e.target.value as 'admin' | 'user')}
               disabled={isLoading}
@@ -263,10 +297,11 @@ export function UserModal({ mode, user, token, onSuccess, onClose }: Props) {
               {/* Date picker */}
               {trialMode === 'date' && (
                 <div className="flex flex-col gap-1.5">
-                  <label className="font-body text-[12px] font-medium" style={{ color: '#64748B' }}>
+                  <label htmlFor="um-trial-date" className="font-body text-[12px] font-medium" style={{ color: '#64748B' }}>
                     Berakhir pada
                   </label>
                   <input
+                    id="um-trial-date"
                     type="date"
                     value={trialExpiresAt}
                     onChange={e => setTrialExpiresAt(e.target.value)}
@@ -281,11 +316,12 @@ export function UserModal({ mode, user, token, onSuccess, onClose }: Props) {
               {/* Duration picker */}
               {trialMode === 'duration' && (
                 <div className="flex flex-col gap-1.5">
-                  <label className="font-body text-[12px] font-medium" style={{ color: '#64748B' }}>
+                  <label htmlFor="um-trial-duration" className="font-body text-[12px] font-medium" style={{ color: '#64748B' }}>
                     Berlaku selama
                   </label>
                   <div className="flex gap-2">
                     <input
+                      id="um-trial-duration"
                       type="number"
                       min={1}
                       max={trialUnit === 'jam' ? 8760 : 365}

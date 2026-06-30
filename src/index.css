@@ -51,11 +51,11 @@
   --shadow-card:   0 1px 3px rgba(15, 23, 42, 0.04), 0 4px 12px rgba(15, 23, 42, 0.06);
   --shadow-glow:  0 0 20px rgba(59, 130, 246, 0.15);
   
-  /* Transitions */
-  --transition-fast:   150ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-base:   200ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow:   300ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-smooth: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  /* Transitions — ease-out-quart (exponential deceleration, consistent with animation tokens) */
+  --transition-fast:   150ms cubic-bezier(0.25, 1, 0.5, 1);
+  --transition-base:   200ms cubic-bezier(0.25, 1, 0.5, 1);
+  --transition-slow:   300ms cubic-bezier(0.25, 1, 0.5, 1);
+  --transition-smooth: 400ms cubic-bezier(0.25, 1, 0.5, 1);
 
   /* Easing curves — exponential deceleration (no bounce/elastic) */
   --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
@@ -358,11 +358,11 @@ body {
 
 /* User list: 2-col mobile, 4-col desktop */
 .grid-user-list {
-  grid-template-columns: 1fr 80px;
+  grid-template-columns: 1fr 92px;
 }
 @media (min-width: 640px) {
   .grid-user-list {
-    grid-template-columns: minmax(0, 2fr) 90px 180px 72px;
+    grid-template-columns: minmax(0, 2fr) 90px 180px 92px;
   }
 }
 

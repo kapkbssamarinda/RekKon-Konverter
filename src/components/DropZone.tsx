@@ -149,7 +149,7 @@ export function DropZone({ onFiles, disabled }: Props) {
       </p>
       <p 
         className="font-body text-[12px] mt-2 text-center"
-        style={{ color: '#94A3B8' }}
+        style={{ color: '#64748B' }}
       >
         PDF files only · Multiple files supported
       </p>

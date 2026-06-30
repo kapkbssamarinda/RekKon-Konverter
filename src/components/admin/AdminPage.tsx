@@ -145,7 +145,7 @@ export function AdminPage() {
                 <h1 className="font-headline font-semibold text-[17px] leading-tight" style={{ color: '#F8FAFC' }}>
                   Manajemen User
                 </h1>
-                <p className="font-body text-[11px] mt-0.5" style={{ color: '#64748B' }}>
+                <p className="font-body text-[11px] mt-0.5" style={{ color: '#94A3B8' }}>
                   Login sebagai <span style={{ color: '#93C5FD' }}>{user?.username}</span>
                 </p>
               </div>

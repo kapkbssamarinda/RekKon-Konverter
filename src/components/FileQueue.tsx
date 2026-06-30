@@ -25,8 +25,8 @@ export function FileQueue({ files, onRemove }: Props) {
             <path d="M12 6v6h5" stroke="#CBD5E1" strokeWidth="1.5" strokeLinecap="round"/>
           </svg>
         </div>
-        <p className="font-body text-[13px]" style={{ color: '#94A3B8' }}>No files yet</p>
-        <p className="font-body text-[12px] mt-1" style={{ color: '#CBD5E1' }}>Drop PDF files to upload</p>
+        <p className="font-body text-[13px]" style={{ color: '#64748B' }}>No files yet</p>
+        <p className="font-body text-[12px] mt-1" style={{ color: '#64748B' }}>Drop PDF files to upload</p>
       </div>
     );
   }

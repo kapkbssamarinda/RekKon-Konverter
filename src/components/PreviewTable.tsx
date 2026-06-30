@@ -122,7 +122,7 @@ export function PreviewTable({ statements }: Props) {
                         {formatNumber(tx.debit)}
                       </span>
                     ) : (
-                      <span className="font-mono text-[13px]" style={{ color: '#CBD5E1' }}>-</span>
+                      <span className="font-mono text-[13px]" style={{ color: '#94A3B8' }}>-</span>
                     )}
                   </td>
                   <td className="px-4 py-3 text-right">
@@ -137,7 +137,7 @@ export function PreviewTable({ statements }: Props) {
                         {formatNumber(tx.credit)}
                       </span>
                     ) : (
-                      <span className="font-mono text-[13px]" style={{ color: '#CBD5E1' }}>-</span>
+                      <span className="font-mono text-[13px]" style={{ color: '#94A3B8' }}>-</span>
                     )}
                   </td>
                   <td className="px-4 py-3 text-right">

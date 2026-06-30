@@ -188,11 +188,11 @@ function App() {
                 className="flex items-center justify-center gap-1.5 font-body text-[12px] w-9 h-9 sm:w-auto sm:h-auto sm:px-3 sm:py-1.5 rounded-lg transition-all"
                 style={{
                   background: 'rgba(255,255,255,0.05)',
-                  color: '#64748B',
+                  color: '#94A3B8',
                   border: '1px solid rgba(255,255,255,0.1)',
                 }}
                 onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.color = '#FCA5A5'; (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(239,68,68,0.3)'; }}
-                onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.color = '#64748B'; (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(255,255,255,0.1)'; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.color = '#94A3B8'; (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(255,255,255,0.1)'; }}
               >
                 <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
                   <path d="M6 3H3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h3M10 11l3-3-3-3M13 8H6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>

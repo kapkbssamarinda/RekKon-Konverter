@@ -37,7 +37,7 @@ function TrialCell({ user }: { user: PublicUser }) {
         {isExpired ? 'Trial Expired' : days !== null ? `Trial · ${days} hari lagi` : 'Trial'}
       </span>
       {dateStr && (
-        <span className="font-body text-[11px]" style={{ color: '#CBD5E1' }}>
+        <span className="font-body text-[11px]" style={{ color: '#64748B' }}>
           s.d. {dateStr}
         </span>
       )}
@@ -68,7 +68,7 @@ export function UserList({ users, currentUserId, onEdit, onDelete }: Props) {
           <circle cx="22" cy="17" r="5.5" stroke="#CBD5E1" strokeWidth="1.5" />
           <path d="M9 36c0-7 5.82-9 13-9s13 2 13 9" stroke="#CBD5E1" strokeWidth="1.5" strokeLinecap="round" />
         </svg>
-        <p className="font-body text-[13px]" style={{ color: '#94A3B8' }}>Belum ada user</p>
+        <p className="font-body text-[13px]" style={{ color: '#64748B' }}>Belum ada user</p>
       </div>
     );
   }
@@ -131,7 +131,7 @@ export function UserList({ users, currentUserId, onEdit, onDelete }: Props) {
                   {isSelf && (
                     <span
                       className="font-mono text-[10px] px-1.5 py-0.5 rounded-full flex-shrink-0"
-                      style={{ background: '#F1F5F9', color: '#94A3B8' }}
+                      style={{ background: '#F1F5F9', color: '#475569' }}
                     >
                       kamu
                     </span>
@@ -157,7 +157,7 @@ export function UserList({ users, currentUserId, onEdit, onDelete }: Props) {
                 </div>
                 <span
                   className="font-mono text-[10px]"
-                  style={{ color: u.role === 'admin' ? '#7C3AED' : '#94A3B8' }}
+                  style={{ color: u.role === 'admin' ? '#7C3AED' : '#64748B' }}
                 >
                   {u.role}
                 </span>
@@ -179,7 +179,7 @@ export function UserList({ users, currentUserId, onEdit, onDelete }: Props) {
               <button
                 onClick={() => onEdit(u)}
                 className="w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-100"
-                style={{ color: '#94A3B8' }}
+                style={{ color: '#64748B' }}
                 title="Edit"
                 onMouseEnter={e => {
                   const el = e.currentTarget as HTMLButtonElement;
@@ -189,7 +189,7 @@ export function UserList({ users, currentUserId, onEdit, onDelete }: Props) {
                 onMouseLeave={e => {
                   const el = e.currentTarget as HTMLButtonElement;
                   el.style.background = 'transparent';
-                  el.style.color = '#94A3B8';
+                  el.style.color = '#64748B';
                 }}
               >
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
@@ -201,7 +201,7 @@ export function UserList({ users, currentUserId, onEdit, onDelete }: Props) {
                 <button
                   onClick={() => onDelete(u.id, u.username)}
                   className="w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-100"
-                  style={{ color: '#94A3B8' }}
+                  style={{ color: '#64748B' }}
                   title="Hapus"
                   onMouseEnter={e => {
                     const el = e.currentTarget as HTMLButtonElement;
@@ -211,7 +211,7 @@ export function UserList({ users, currentUserId, onEdit, onDelete }: Props) {
                   onMouseLeave={e => {
                     const el = e.currentTarget as HTMLButtonElement;
                     el.style.background = 'transparent';
-                    el.style.color = '#94A3B8';
+                    el.style.color = '#64748B';
                   }}
                 >
                   <svg width="14" height="14" viewBox="0 0 16 16" fill="none">

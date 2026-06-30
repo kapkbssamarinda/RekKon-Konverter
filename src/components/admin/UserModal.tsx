@@ -148,7 +148,7 @@ export function UserModal({ mode, user, token, onSuccess, onClose }: Props) {
           <button
             onClick={onClose}
             className="w-8 h-8 rounded-lg flex items-center justify-center transition-colors"
-            style={{ color: '#94A3B8' }}
+            style={{ color: '#64748B' }}
             onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = '#F1F5F9'; }}
             onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = 'transparent'; }}
           >
@@ -181,7 +181,7 @@ export function UserModal({ mode, user, token, onSuccess, onClose }: Props) {
             <label className="font-body font-medium text-[13px]" style={{ color: '#374151' }}>
               Password{' '}
               {mode === 'edit' && (
-                <span style={{ color: '#94A3B8', fontWeight: 400 }}>— kosongkan jika tidak diubah</span>
+                <span style={{ color: '#64748B', fontWeight: 400 }}>— kosongkan jika tidak diubah</span>
               )}
             </label>
             <input

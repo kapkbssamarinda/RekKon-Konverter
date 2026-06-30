@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from 'react';
 import { useAuth } from '../../hooks/useAuth';
-import { ErrorBanner } from '../ui/ErrorBanner';
+import { swalError } from '../../lib/swal';
 import bniLogo from '../../assets/logo/BNI.jpg';
 import briLogo from '../../assets/logo/bri.png';
 import mandiriLogo from '../../assets/logo/mandiri.png';
@@ -18,16 +18,15 @@ export function LoginPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    setError(null);
     setIsLoading(true);
     try {
       await login(username.trim(), password);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Login gagal');
+      const msg = err instanceof Error ? err.message : 'Login gagal';
+      await swalError(msg, 'Login Gagal');
     } finally {
       setIsLoading(false);
     }
@@ -141,8 +140,6 @@ export function LoginPage() {
                 className="px-4 py-2.5 input-field"
               />
             </div>
-
-            {error && <ErrorBanner message={error} />}
 
             <button
               type="submit"

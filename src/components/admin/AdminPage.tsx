@@ -5,6 +5,7 @@ import { UserModal } from './UserModal';
 import { ErrorBanner } from '../ui/ErrorBanner';
 import { LoadingDots } from '../ui/LoadingDots';
 import { IconBox } from '../ui/IconBox';
+import { swalConfirmLogout } from '../../lib/swal';
 import type { PublicUser } from '../../types/auth';
 
 type ModalState =
@@ -25,6 +26,11 @@ export function AdminPage() {
     if (!token) return;
     fetchUsers();
   }, [token]);
+
+  async function handleLogout() {
+    const result = await swalConfirmLogout();
+    if (result.isConfirmed) logout();
+  }
 
   async function fetchUsers() {
     setIsLoading(true);
@@ -172,7 +178,7 @@ export function AdminPage() {
                 <span className="hidden sm:inline" aria-hidden="true">Converter</span>
               </button>
               <button
-                onClick={logout}
+                onClick={handleLogout}
                 aria-label="Logout"
                 className="flex items-center justify-center gap-1.5 w-9 h-9 sm:w-auto sm:h-auto sm:px-3.5 sm:py-2 rounded-lg font-body text-[13px] font-semibold transition-colors"
                 style={{ background: '#FFFFFF', color: '#64748B', border: '1px solid #E2E8F0' }}

@@ -1,4 +1,4 @@
-import { useMemo, useEffect, useState } from 'react';
+import { useMemo, useEffect } from 'react';
 import { DropZone } from './components/DropZone';
 import { FileQueue } from './components/FileQueue';
 import { PreviewTable } from './components/PreviewTable';
@@ -9,10 +9,10 @@ import { LoginPage } from './components/auth/LoginPage';
 import { AdminPage } from './components/admin/AdminPage';
 import { LoadingDots } from './components/ui/LoadingDots';
 import { IconBox } from './components/ui/IconBox';
-import { ErrorBanner } from './components/ui/ErrorBanner';
 import { useFileProcessor } from './hooks/useFileProcessor';
 import { useAuth } from './hooks/useAuth';
 import { exportToExcel } from './services/excelExporter';
+import { swalConfirmLogout, swalError } from './lib/swal';
 
 type AppStep = 'upload' | 'processing' | 'done';
 
@@ -39,7 +39,6 @@ function LoadingScreen() {
 function App() {
   const { status, user, page, setPage, logout } = useAuth();
   const { files, statements, addFiles, removeFile, reset } = useFileProcessor();
-  const [exportError, setExportError] = useState<string | null>(null);
 
   useEffect(() => {
     reset();
@@ -52,13 +51,17 @@ function App() {
     return 'upload';
   }, [files, statements]);
 
+  async function handleLogout() {
+    const result = await swalConfirmLogout();
+    if (result.isConfirmed) logout();
+  }
+
   function handleExport() {
     if (statements.length === 0) return;
-    setExportError(null);
     try {
       exportToExcel(statements);
     } catch (err) {
-      setExportError(err instanceof Error ? err.message : 'Gagal mengekspor Excel');
+      swalError(err instanceof Error ? err.message : 'Gagal mengekspor Excel', 'Gagal Export');
     }
   }
 
@@ -165,7 +168,7 @@ function App() {
 
               {/* Logout button — ghost destructive */}
               <button
-                onClick={logout}
+                onClick={handleLogout}
                 aria-label="Logout"
                 className="flex items-center justify-center gap-1.5 font-body text-[13px] w-9 h-9 sm:w-auto sm:h-auto sm:px-3 sm:py-2 rounded-lg transition-colors"
                 style={{
@@ -222,12 +225,6 @@ function App() {
         {statements.length > 0 && (
           <div className="mt-10 animate-fade-in-up">
             <PreviewTable statements={statements} />
-          </div>
-        )}
-
-        {exportError && (
-          <div className="mt-6 animate-error-in">
-            <ErrorBanner message={exportError} />
           </div>
         )}
 

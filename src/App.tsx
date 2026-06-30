@@ -34,9 +34,9 @@ function LoadingScreen() {
           </svg>
         </div>
         <div className="flex gap-1.5">
-          <div className="w-2 h-2 rounded-full animate-bounce" style={{ background: '#3B82F6', animationDelay: '0ms' }} />
-          <div className="w-2 h-2 rounded-full animate-bounce" style={{ background: '#3B82F6', animationDelay: '150ms' }} />
-          <div className="w-2 h-2 rounded-full animate-bounce" style={{ background: '#3B82F6', animationDelay: '300ms' }} />
+          <div className="w-2 h-2 rounded-full animate-dot-fade" style={{ background: '#3B82F6', animationDelay: '0ms' }} />
+          <div className="w-2 h-2 rounded-full animate-dot-fade" style={{ background: '#3B82F6', animationDelay: '200ms' }} />
+          <div className="w-2 h-2 rounded-full animate-dot-fade" style={{ background: '#3B82F6', animationDelay: '400ms' }} />
         </div>
       </div>
     </div>
@@ -101,7 +101,7 @@ function App() {
             {/* Logo & Title */}
             <div className="flex items-center gap-4">
               <div
-                className="w-11 h-11 rounded-xl flex items-center justify-center animate-float"
+                className="w-11 h-11 rounded-xl flex items-center justify-center"
                 style={{
                   background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(59, 130, 246, 0.1) 100%)',
                   border: '1px solid rgba(59, 130, 246, 0.3)',

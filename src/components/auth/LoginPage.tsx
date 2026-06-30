@@ -50,7 +50,7 @@ export function LoginPage() {
         <div className="max-w-5xl mx-auto px-6 py-5 relative">
           <div className="flex items-center gap-4">
             <div
-              className="w-11 h-11 rounded-xl flex items-center justify-center animate-float"
+              className="w-11 h-11 rounded-xl flex items-center justify-center"
               style={{
                 background: 'linear-gradient(135deg, rgba(59,130,246,0.2) 0%, rgba(59,130,246,0.1) 100%)',
                 border: '1px solid rgba(59,130,246,0.3)',
@@ -187,8 +187,8 @@ export function LoginPage() {
       {/* Bank Logos Marquee */}
       <div style={{ background: '#F8FAFC', borderTop: '1px solid #F1F5F9' }}>
         <p
-          className="text-center font-body uppercase tracking-widest pt-4 pb-3"
-          style={{ fontSize: '10px', color: '#CBD5E1', letterSpacing: '0.14em' }}
+          className="text-center font-body pt-4 pb-3"
+          style={{ fontSize: '11px', color: '#64748B' }}
         >
           Format rekening koran yang didukung
         </p>

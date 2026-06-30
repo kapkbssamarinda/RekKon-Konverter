@@ -67,7 +67,7 @@ export function SupportedBanks() {
                 style={{ 
                   background: isSupported 
                     ? '#10B981' 
-                    : '#94A3B8'
+                    : '#64748B'
                 }}
               />
               
@@ -77,7 +77,7 @@ export function SupportedBanks() {
                 style={{ 
                   color: isSupported 
                     ? (config?.text || '#0F172A') 
-                    : '#94A3B8'
+                    : '#64748B'
                 }}
               >
                 {bank.name}
@@ -87,9 +87,9 @@ export function SupportedBanks() {
               {!isSupported && (
                 <span 
                   className="font-body text-[10px] px-1.5 py-0.5 rounded"
-                  style={{ 
+                  style={{
                     background: '#F1F5F9',
-                    color: '#94A3B8'
+                    color: '#64748B'
                   }}
                 >
                   Soon

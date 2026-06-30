@@ -11,7 +11,7 @@ interface Props {
 function TrialCell({ user }: { user: PublicUser }) {
   if (!user.isTrial) {
     return (
-      <span className="font-body text-[12px]" style={{ color: '#94A3B8' }}>
+      <span className="font-body text-[12px]" style={{ color: '#64748B' }}>
         Regular
       </span>
     );
@@ -85,7 +85,7 @@ export function UserList({ users, currentUserId, onEdit, onDelete }: Props) {
           gridTemplateColumns: COL,
           background: '#F8FAFC',
           borderBottom: '1px solid #F1F5F9',
-          color: '#94A3B8',
+          color: '#64748B',
         }}
       >
         <span>User</span>

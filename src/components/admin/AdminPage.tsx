@@ -114,6 +114,7 @@ export function AdminPage() {
     <div className="min-h-screen" style={{ background: '#F1F5F9' }}>
       {/* Header */}
       <header
+        className="relative overflow-hidden"
         style={{
           background: 'linear-gradient(180deg, #0F172A 0%, #1E293B 100%)',
           boxShadow: '0 4px 20px rgba(15,23,42,0.15)',
@@ -189,7 +190,6 @@ export function AdminPage() {
               style={{
                 background: '#FFFFFF',
                 border: '1px solid #E2E8F0',
-                borderLeft: `4px solid ${stat.color}`,
                 boxShadow: '0 1px 4px rgba(15,23,42,0.05)',
               }}
             >
@@ -224,7 +224,7 @@ export function AdminPage() {
               <h2 className="font-headline font-semibold text-[15px]" style={{ color: '#0F172A' }}>
                 Daftar User
               </h2>
-              <p className="font-body text-[12px] mt-0.5" style={{ color: '#94A3B8' }}>
+              <p className="font-body text-[12px] mt-0.5" style={{ color: '#64748B' }}>
                 {isLoading ? 'Memuat...' : `${users.length} user terdaftar`}
               </p>
             </div>
@@ -248,10 +248,10 @@ export function AdminPage() {
           {isLoading ? (
             <div className="flex items-center justify-center py-16">
               <div className="flex gap-1.5">
-                {[0, 150, 300].map(delay => (
+                {[0, 200, 400].map(delay => (
                   <div
                     key={delay}
-                    className="w-2 h-2 rounded-full animate-bounce"
+                    className="w-2 h-2 rounded-full animate-dot-fade"
                     style={{ background: '#3B82F6', animationDelay: `${delay}ms` }}
                   />
                 ))}

@@ -49,7 +49,7 @@ export function SummaryBar({ statements, files, onExport, onReset }: Props) {
                 <p className="font-mono text-[18px] font-semibold" style={{ color: '#0F172A' }}>
                   {totalTx.toLocaleString('id-ID')}
                 </p>
-                <p className="font-body text-[11px]" style={{ color: '#94A3B8' }}>Transactions</p>
+                <p className="font-body text-[11px]" style={{ color: '#64748B' }}>Transactions</p>
               </div>
             </div>
             
@@ -69,7 +69,7 @@ export function SummaryBar({ statements, files, onExport, onReset }: Props) {
               </div>
               <div>
                 <p className="font-mono text-[18px] font-semibold" style={{ color: '#0F172A' }}>{banks}</p>
-                <p className="font-body text-[11px]" style={{ color: '#94A3B8' }}>Banks</p>
+                <p className="font-body text-[11px]" style={{ color: '#64748B' }}>Banks</p>
               </div>
             </div>
             
@@ -89,7 +89,7 @@ export function SummaryBar({ statements, files, onExport, onReset }: Props) {
               </div>
               <div>
                 <p className="font-mono text-[18px] font-semibold" style={{ color: '#0F172A' }}>{doneFiles}</p>
-                <p className="font-body text-[11px]" style={{ color: '#94A3B8' }}>Files</p>
+                <p className="font-body text-[11px]" style={{ color: '#64748B' }}>Files</p>
               </div>
             </div>
           </div>

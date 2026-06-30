@@ -235,10 +235,21 @@ body {
 
 .animate-marquee {
   animation: marquee 20s linear infinite;
+  will-change: transform;
 }
 
 .animate-marquee:hover {
   animation-play-state: paused;
+}
+
+/* Loading dot fade — cascading opacity pulse */
+@keyframes dotFade {
+  0%, 60%, 100% { opacity: 0.2; }
+  30%            { opacity: 1;   }
+}
+
+.animate-dot-fade {
+  animation: dotFade 1.2s ease-in-out infinite both;
 }
 
 /* Staggered Animation Delays */
@@ -281,21 +292,6 @@ body {
   box-shadow: var(--shadow-lg);
 }
 
-/* Text Gradient - Subtle text gradient */
-.text-gradient {
-  background: linear-gradient(135deg, var(--color-text-primary) 0%, var(--color-text-secondary) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Accent Gradient */
-.text-accent {
-  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dk) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
 
 /* ═══════════════════════════════════════════════════════════════════
    CUSTOM SCROLLBAR
@@ -316,6 +312,25 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-border-strong);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   REDUCED MOTION
+═══════════════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-float,
+  .animate-dot-fade,
+  .animate-fade-in-up,
+  .animate-fade-in-scale,
+  .animate-slide-in-left,
+  .animate-slide-in-right,
+  .animate-subtle-pulse,
+  .animate-shimmer,
+  .animate-glow-pulse {
+    animation: none !important;
+    transition: none !important;
+  }
 }
 
 /* Selection */

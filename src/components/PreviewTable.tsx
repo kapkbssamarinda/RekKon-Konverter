@@ -37,7 +37,7 @@ export function PreviewTable({ statements }: Props) {
           <h2 className="font-headline font-semibold text-lg" style={{ color: '#0F172A' }}>
             Transaction Preview
           </h2>
-          <p className="font-body text-[12px]" style={{ color: '#94A3B8' }}>
+          <p className="font-body text-[12px]" style={{ color: '#64748B' }}>
             Showing first {displayed.length} of {allTx.length.toLocaleString('id-ID')} transactions
           </p>
         </div>

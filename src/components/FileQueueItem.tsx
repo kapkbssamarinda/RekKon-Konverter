@@ -97,7 +97,7 @@ export function FileQueueItem({ item, onRemove }: Props) {
             {item.file.name}
           </p>
           <div className="flex items-center gap-2 mt-0.5">
-            <span className="font-body text-[12px]" style={{ color: '#94A3B8' }}>
+            <span className="font-body text-[12px]" style={{ color: '#64748B' }}>
               {fileSizeKb} KB
             </span>
             {bankConfig && (

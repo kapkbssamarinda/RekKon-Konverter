@@ -73,7 +73,7 @@ function App() {
     : null;
 
   return (
-    <div className="min-h-screen pb-[80px]" style={{ background: '#FAFBFC' }}>
+    <div className="min-h-screen pb-[120px] sm:pb-[80px]" style={{ background: '#FAFBFC' }}>
       {/* Elegant Dark Header */}
       <header
         className="relative overflow-hidden animate-fade-in-scale"
@@ -96,12 +96,12 @@ function App() {
           }}
         />
 
-        <div className="max-w-5xl mx-auto px-6 py-5 relative">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-3 sm:py-5 relative">
           <div className="flex items-center justify-between">
             {/* Logo & Title */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3 sm:gap-4">
               <div
-                className="w-11 h-11 rounded-xl flex items-center justify-center"
+                className="w-9 h-9 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center flex-shrink-0"
                 style={{
                   background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(59, 130, 246, 0.1) 100%)',
                   border: '1px solid rgba(59, 130, 246, 0.3)',
@@ -121,20 +121,22 @@ function App() {
                 >
                   RekKoran Converter
                 </h1>
-                <p className="font-body text-[12px] mt-0.5" style={{ color: '#94A3B8' }}>
+                <p className="font-body text-[12px] mt-0.5 hidden sm:block" style={{ color: '#94A3B8' }}>
                   PDF Rekening Koran → Excel · Processing happens locally
                 </p>
               </div>
             </div>
 
             {/* Header Actions */}
-            <div className="flex items-center gap-3">
-              <StepIndicator step={step} />
+            <div className="flex items-center gap-2 sm:gap-3">
+              <div className="hidden sm:block">
+                <StepIndicator step={step} />
+              </div>
 
-              {/* Trial badge */}
+              {/* Trial badge — desktop only */}
               {isTrial && trialDaysLeft !== null && (
                 <div
-                  className="font-mono text-[11px] px-2.5 py-1 rounded-lg"
+                  className="hidden sm:flex font-mono text-[11px] px-2.5 py-1 rounded-lg"
                   style={{
                     background: trialDaysLeft <= 3 ? 'rgba(239,68,68,0.12)' : 'rgba(16,185,129,0.1)',
                     color: trialDaysLeft <= 3 ? '#FCA5A5' : '#6EE7B7',
@@ -145,9 +147,9 @@ function App() {
                 </div>
               )}
 
-              {/* User info */}
+              {/* User info — desktop only */}
               <div
-                className="font-body text-[12px] px-3 py-1.5 rounded-lg flex items-center gap-2"
+                className="hidden sm:flex font-body text-[12px] px-3 py-1.5 rounded-lg items-center gap-2"
                 style={{
                   background: 'rgba(255,255,255,0.06)',
                   color: '#CBD5E1',
@@ -157,11 +159,11 @@ function App() {
                 <span>{user?.username}</span>
               </div>
 
-              {/* Admin button */}
+              {/* Admin button — icon+text on desktop, icon-only on mobile */}
               {user?.role === 'admin' && (
                 <button
                   onClick={() => setPage('admin')}
-                  className="flex items-center gap-1.5 font-body text-[12px] px-3 py-1.5 rounded-lg transition-all"
+                  className="flex items-center justify-center gap-1.5 font-body text-[12px] w-9 h-9 sm:w-auto sm:h-auto sm:px-3 sm:py-1.5 rounded-lg transition-all"
                   style={{
                     background: 'rgba(139,92,246,0.12)',
                     color: '#C4B5FD',
@@ -175,14 +177,14 @@ function App() {
                     <circle cx="12" cy="6" r="3" stroke="currentColor" strokeWidth="1.5"/>
                     <path d="M0 14c0-2.5 2.7-4 6-4s6 1.5 6 4M9 12c.4-.8 1.6-2 3-2s2.6 1.2 3 2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
                   </svg>
-                  Admin
+                  <span className="hidden sm:inline">Admin</span>
                 </button>
               )}
 
-              {/* Logout button */}
+              {/* Logout button — icon+text on desktop, icon-only on mobile */}
               <button
                 onClick={logout}
-                className="flex items-center gap-1.5 font-body text-[12px] px-3 py-1.5 rounded-lg transition-all"
+                className="flex items-center justify-center gap-1.5 font-body text-[12px] w-9 h-9 sm:w-auto sm:h-auto sm:px-3 sm:py-1.5 rounded-lg transition-all"
                 style={{
                   background: 'rgba(255,255,255,0.05)',
                   color: '#64748B',
@@ -194,7 +196,7 @@ function App() {
                 <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
                   <path d="M6 3H3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h3M10 11l3-3-3-3M13 8H6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
-                Logout
+                <span className="hidden sm:inline">Logout</span>
               </button>
 
               <div
@@ -213,7 +215,7 @@ function App() {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-5xl mx-auto px-6 pt-10">
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 pt-6 sm:pt-10">
         {/* Upload Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div className="animate-fade-in-up delay-100">

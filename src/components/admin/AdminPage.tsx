@@ -124,7 +124,7 @@ export function AdminPage() {
           className="absolute bottom-0 left-0 right-0 h-[1px] pointer-events-none"
           style={{ background: 'linear-gradient(90deg, transparent 0%, #3B82F6 50%, transparent 100%)' }}
         />
-        <div className="max-w-5xl mx-auto px-6 py-4">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div
@@ -151,7 +151,7 @@ export function AdminPage() {
             <div className="flex items-center gap-2">
               <button
                 onClick={() => setPage('app')}
-                className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-body text-[13px] font-medium transition-all"
+                className="flex items-center justify-center gap-1.5 w-9 h-9 sm:w-auto sm:h-auto sm:px-3.5 sm:py-2 rounded-xl font-body text-[13px] font-medium transition-all"
                 style={{ background: 'rgba(255,255,255,0.07)', color: '#CBD5E1', border: '1px solid rgba(255,255,255,0.1)' }}
                 onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = 'rgba(255,255,255,0.12)'; }}
                 onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = 'rgba(255,255,255,0.07)'; }}
@@ -160,11 +160,11 @@ export function AdminPage() {
                   <rect x="1" y="3" width="14" height="10" rx="2" stroke="currentColor" strokeWidth="1.5" />
                   <path d="M4 7h8M4 10h5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                 </svg>
-                Converter
+                <span className="hidden sm:inline">Converter</span>
               </button>
               <button
                 onClick={logout}
-                className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-body text-[13px] font-medium transition-all"
+                className="flex items-center justify-center gap-1.5 w-9 h-9 sm:w-auto sm:h-auto sm:px-3.5 sm:py-2 rounded-xl font-body text-[13px] font-medium transition-all"
                 style={{ background: 'rgba(239,68,68,0.1)', color: '#FCA5A5', border: '1px solid rgba(239,68,68,0.2)' }}
                 onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = 'rgba(239,68,68,0.18)'; }}
                 onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = 'rgba(239,68,68,0.1)'; }}
@@ -172,17 +172,17 @@ export function AdminPage() {
                 <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
                   <path d="M6 3H3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h3M10 11l3-3-3-3M13 8H6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-                Logout
+                <span className="hidden sm:inline">Logout</span>
               </button>
             </div>
           </div>
         </div>
       </header>
 
-      <main className="max-w-5xl mx-auto px-6 pt-7 pb-16">
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 pt-6 sm:pt-7 pb-16">
 
         {/* Stats */}
-        <div className="grid grid-cols-3 gap-4 mb-6">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-6">
           {stats.map(stat => (
             <div
               key={stat.label}
@@ -217,7 +217,7 @@ export function AdminPage() {
           style={{ background: '#FFFFFF', border: '1px solid #E2E8F0', boxShadow: '0 1px 6px rgba(15,23,42,0.06)' }}
         >
           <div
-            className="flex items-center justify-between px-6 py-4"
+            className="flex items-center justify-between px-4 sm:px-6 py-4"
             style={{ borderBottom: '1px solid #F1F5F9' }}
           >
             <div>

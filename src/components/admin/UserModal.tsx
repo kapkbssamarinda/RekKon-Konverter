@@ -142,7 +142,7 @@ export function UserModal({ mode, user, token, onSuccess, onClose }: Props) {
       onClick={e => { if (e.target === e.currentTarget) onClose(); }}
     >
       <div
-        className="w-full max-w-[480px] rounded-2xl p-6 animate-fade-in-scale"
+        className="w-full max-w-[480px] rounded-2xl p-5 sm:p-6 animate-fade-in-scale max-h-[90dvh] overflow-y-auto"
         style={{ background: '#FFFFFF', border: '1px solid #E2E8F0', boxShadow: '0 20px 60px rgba(15,23,42,0.2)' }}
       >
         {/* Modal Header */}

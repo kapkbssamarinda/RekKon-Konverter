@@ -315,6 +315,25 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════════════════════
+   RESPONSIVE UTILITIES
+═══════════════════════════════════════════════════════════════════ */
+
+/* User list: 2-col mobile, 4-col desktop */
+.grid-user-list {
+  grid-template-columns: 1fr 80px;
+}
+@media (min-width: 640px) {
+  .grid-user-list {
+    grid-template-columns: minmax(0, 2fr) 90px 180px 72px;
+  }
+}
+
+/* Safe-area bottom padding for fixed bars on notched phones */
+.summary-bar-safe {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+/* ═══════════════════════════════════════════════════════════════════
    REDUCED MOTION
 ═══════════════════════════════════════════════════════════════════ */
 @media (prefers-reduced-motion: reduce) {

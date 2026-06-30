@@ -7,7 +7,6 @@ interface Props {
   onDelete: (userId: string, username: string) => void;
 }
 
-// Combines trial type + expiry date into one column
 function TrialCell({ user }: { user: PublicUser }) {
   if (!user.isTrial) {
     return (
@@ -53,14 +52,12 @@ function StatusDot({ isActive }: { isActive: boolean }) {
         className="w-1.5 h-1.5 rounded-full flex-shrink-0"
         style={{ background: isActive ? '#22C55E' : '#CBD5E1' }}
       />
-      <span className="font-body text-[12px]" style={{ color: isActive ? '#15803D' : '#94A3B8' }}>
+      <span className="font-body text-[12px]" style={{ color: isActive ? '#15803D' : '#64748B' }}>
         {isActive ? 'Aktif' : 'Nonaktif'}
       </span>
     </div>
   );
 }
-
-const COL = 'minmax(0,2fr) 90px 180px 72px';
 
 export function UserList({ users, currentUserId, onEdit, onDelete }: Props) {
   if (users.length === 0) {
@@ -80,17 +77,16 @@ export function UserList({ users, currentUserId, onEdit, onDelete }: Props) {
     <div>
       {/* Table header */}
       <div
-        className="grid px-6 py-2.5 font-body font-medium text-[11px] uppercase tracking-wider"
+        className="grid grid-user-list px-4 sm:px-6 py-2.5 font-body font-medium text-[11px] uppercase tracking-wider"
         style={{
-          gridTemplateColumns: COL,
           background: '#F8FAFC',
           borderBottom: '1px solid #F1F5F9',
           color: '#64748B',
         }}
       >
         <span>User</span>
-        <span>Status</span>
-        <span>Akun</span>
+        <span className="hidden sm:block">Status</span>
+        <span className="hidden sm:block">Akun</span>
         <span />
       </div>
 
@@ -99,13 +95,13 @@ export function UserList({ users, currentUserId, onEdit, onDelete }: Props) {
         const isSelf = u.id === currentUserId;
         const avatarBg = u.role === 'admin' ? '#F3E8FF' : '#EFF6FF';
         const avatarColor = u.role === 'admin' ? '#7C3AED' : '#2563EB';
+        const trialExpired = u.isTrial && u.trialExpiresAt ? new Date(u.trialExpiresAt) < new Date() : false;
 
         return (
           <div
             key={u.id}
-            className="grid items-center px-6 py-3.5 transition-colors duration-100"
+            className="grid grid-user-list items-center px-4 sm:px-6 py-3 sm:py-3.5 transition-colors duration-100"
             style={{
-              gridTemplateColumns: COL,
               borderTop: idx === 0 ? 'none' : '1px solid #F8FAFC',
               background: '#FFFFFF',
             }}
@@ -141,6 +137,24 @@ export function UserList({ users, currentUserId, onEdit, onDelete }: Props) {
                     </span>
                   )}
                 </div>
+                {/* Mobile-only: inline status + trial */}
+                <div className="flex items-center gap-1.5 mt-0.5 sm:hidden">
+                  <div
+                    className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+                    style={{ background: u.isActive ? '#22C55E' : '#CBD5E1' }}
+                  />
+                  <span className="font-body text-[11px]" style={{ color: u.isActive ? '#15803D' : '#64748B' }}>
+                    {u.isActive ? 'Aktif' : 'Nonaktif'}
+                  </span>
+                  {u.isTrial && (
+                    <>
+                      <span style={{ color: '#E2E8F0' }}>·</span>
+                      <span className="font-body text-[11px]" style={{ color: trialExpired ? '#DC2626' : '#059669' }}>
+                        {trialExpired ? 'Trial Expired' : 'Trial'}
+                      </span>
+                    </>
+                  )}
+                </div>
                 <span
                   className="font-mono text-[10px]"
                   style={{ color: u.role === 'admin' ? '#7C3AED' : '#94A3B8' }}
@@ -150,11 +164,15 @@ export function UserList({ users, currentUserId, onEdit, onDelete }: Props) {
               </div>
             </div>
 
-            {/* Col 2: Status */}
-            <StatusDot isActive={u.isActive} />
+            {/* Col 2: Status — desktop only */}
+            <div className="hidden sm:block">
+              <StatusDot isActive={u.isActive} />
+            </div>
 
-            {/* Col 3: Trial info */}
-            <TrialCell user={u} />
+            {/* Col 3: Trial info — desktop only */}
+            <div className="hidden sm:block">
+              <TrialCell user={u} />
+            </div>
 
             {/* Col 4: Actions */}
             <div className="flex items-center justify-end gap-1">

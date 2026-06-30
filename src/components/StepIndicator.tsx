@@ -27,10 +27,10 @@ export function StepIndicator({ step }: Props) {
                 className="w-7 h-7 rounded-lg flex items-center justify-center text-[12px] font-medium transition-all duration-300"
                 style={{
                   background: isDone
-                    ? 'rgba(5, 150, 105, 0.12)'
+                    ? 'linear-gradient(135deg, #ECFDF5, #D1FAE5)'
                     : isActive
-                    ? 'rgba(0, 119, 182, 0.12)'
-                    : '#F8FAFC',
+                    ? 'linear-gradient(135deg, #E0F4FF, #CCEEFF)'
+                    : 'linear-gradient(135deg, #F8FAFC, #F1F5F9)',
                   color: isDone
                     ? '#059669'
                     : isActive
@@ -39,8 +39,9 @@ export function StepIndicator({ step }: Props) {
                   border: isDone
                     ? '1px solid rgba(5, 150, 105, 0.3)'
                     : isActive
-                    ? '1px solid rgba(0, 119, 182, 0.3)'
+                    ? '1px solid rgba(0, 119, 182, 0.4)'
                     : '1px solid #E2E8F0',
+                  boxShadow: isActive ? '0 2px 8px rgba(0,119,182,0.15)' : 'none',
                 }}
               >
                 {isDone ? (

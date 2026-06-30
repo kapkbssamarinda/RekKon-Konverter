@@ -22,31 +22,35 @@ export function FileQueueItem({ item, onRemove }: Props) {
     switch (item.status) {
       case 'queued':
         return { 
-          bg: '#F8FAFC', 
+          bg: 'linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%)', 
           text: '#64748B',
           border: '#E2E8F0',
-          dot: '#94A3B8'
+          dot: '#94A3B8',
+          dotGlow: false,
         };
       case 'processing':
         return {
-          bg: '#F0F7FF',
+          bg: 'linear-gradient(135deg, #E0F4FF 0%, #CCEEFF 100%)',
           text: '#0077B6',
           border: '#90E0EF',
           dot: '#0077B6',
+          dotGlow: true,
         };
       case 'done':
         return { 
-          bg: '#ECFDF5', 
+          bg: 'linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%)', 
           text: '#059669',
           border: '#A7F3D0',
-          dot: '#10B981'
+          dot: '#10B981',
+          dotGlow: true,
         };
       case 'error':
         return { 
-          bg: '#FEF2F2', 
+          bg: 'linear-gradient(135deg, #FEF2F2 0%, #FEE2E2 100%)', 
           text: '#DC2626',
           border: '#FECACA',
-          dot: '#EF4444'
+          dot: '#EF4444',
+          dotGlow: false,
         };
     }
   };
@@ -59,10 +63,10 @@ export function FileQueueItem({ item, onRemove }: Props) {
 
   return (
     <div
-      className="rounded-lg p-4 transition-colors"
+      className="rounded-xl p-4 transition-all duration-200 hover:shadow-md"
       style={{
         background: '#FFFFFF',
-        boxShadow: '0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04)',
+        boxShadow: '0 2px 8px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04)',
         border: '1px solid #E2E8F0',
       }}
     >
@@ -119,7 +123,10 @@ export function FileQueueItem({ item, onRemove }: Props) {
         >
           <span 
             className={`w-1.5 h-1.5 rounded-full ${item.status === 'processing' ? 'animate-subtle-pulse' : ''}`}
-            style={{ background: status.dot }}
+            style={{
+              background: status.dot,
+              boxShadow: status.dotGlow ? `0 0 6px ${status.dot}` : 'none',
+            }}
           />
           <span>
             {item.status === 'queued' && 'Waiting'}
@@ -152,11 +159,11 @@ export function FileQueueItem({ item, onRemove }: Props) {
 
       {/* Progress Bar */}
       {item.status === 'processing' && (
-        <div className="mt-3 h-[3px] rounded-full overflow-hidden" style={{ background: '#F1F5F9' }}>
+        <div className="mt-3 h-[3px] rounded-full overflow-hidden" style={{ background: '#E0F4FF' }}>
           <div
             className="h-full w-full rounded-full relative overflow-hidden"
             style={{
-              background: '#0077B6',
+              background: 'linear-gradient(90deg, #0077B6, #00B4D8)',
               transform: `scaleX(${item.progress / 100})`,
               transformOrigin: 'left',
               transition: 'transform 0.35s cubic-bezier(0.25, 1, 0.5, 1)',
@@ -165,7 +172,7 @@ export function FileQueueItem({ item, onRemove }: Props) {
             <div 
               className="absolute inset-0 animate-shimmer"
               style={{ 
-                background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent)'
+                background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent)'
               }}
             />
           </div>

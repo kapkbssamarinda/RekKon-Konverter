@@ -2,7 +2,7 @@
 
 @theme {
   --font-headline: 'Figtree', sans-serif;
-  --font-body: 'Open Sans', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
   --font-mono: 'IBM Plex Mono', monospace;
 }
 
@@ -75,7 +75,7 @@
 
 body {
   margin: 0;
-  background: var(--color-bg);
+  background: linear-gradient(135deg, #EFF6FF 0%, #FAFCFF 40%, #F0FDF4 100%);
   color: var(--color-text-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -288,7 +288,7 @@ body {
 
 /* Selection */
 ::selection {
-  background: rgba(0, 119, 182, 0.15);
+  background: rgba(0, 180, 216, 0.2);
   color: var(--color-text-primary);
 }
 
@@ -296,4 +296,17 @@ body {
 :focus-visible {
   outline: none;
   box-shadow: 0 0 0 2px #FAFCFF, 0 0 0 4px var(--color-primary);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   ENHANCED SCROLLBAR — vibrant style
+═══════════════════════════════════════════════════════════════════ */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #90E0EF, #48CAE4);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #0077B6, #00B4D8);
 }

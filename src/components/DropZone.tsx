@@ -58,21 +58,42 @@ export function DropZone({ onFiles, disabled }: Props) {
       aria-disabled={disabled}
       className={`
         relative flex flex-col items-center justify-center
-        cursor-pointer
+        cursor-pointer overflow-hidden
         transition-all duration-300
         select-none min-h-[220px] p-6
         ${isActive ? 'scale-[1.01]' : ''}
         ${disabled ? 'cursor-not-allowed opacity-50' : ''}
       `}
       style={{
-        background: isActive ? '#F0F7FF' : '#FFFFFF',
-        border: `2px dashed ${isActive ? '#0077B6' : disabled ? '#E2E8F0' : '#CBD5E1'}`,
-        borderRadius: '8px',
+        background: isActive ? 'linear-gradient(135deg, #0077B6 0%, #00B4D8 100%)' : 'linear-gradient(135deg, #FFFFFF 0%, #F8FCFF 100%)',
+        border: `2px dashed ${isActive ? '#00E5FF' : disabled ? '#E2E8F0' : '#90E0EF'}`,
+        borderRadius: '16px',
         boxShadow: isActive
-          ? '0 4px 12px rgba(0,119,182,0.10)'
-          : '0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04)',
+          ? '0 8px 32px rgba(0,119,182,0.25)'
+          : '0 2px 12px rgba(0,0,0,0.06), 0 1px 4px rgba(0,0,0,0.04)',
       }}
     >
+      {/* Decorative gradient orbs */}
+      <div aria-hidden="true" style={{
+        position: 'absolute',
+        top: '-30px',
+        right: '-30px',
+        width: '100px',
+        height: '100px',
+        borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(0,180,216,0.15) 0%, transparent 70%)',
+        pointerEvents: 'none',
+      }} />
+      <div aria-hidden="true" style={{
+        position: 'absolute',
+        bottom: '-20px',
+        left: '-20px',
+        width: '80px',
+        height: '80px',
+        borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(0,119,182,0.12) 0%, transparent 70%)',
+        pointerEvents: 'none',
+      }} />
       <input
         ref={inputRef}
         type="file"
@@ -85,10 +106,11 @@ export function DropZone({ onFiles, disabled }: Props) {
 
       {/* Elegant Icon Container */}
       <div
-        className={`w-14 h-14 rounded-lg flex items-center justify-center mb-5 transition-all duration-300 ${isActive ? 'scale-110' : ''}`}
+        className={`w-14 h-14 rounded-xl flex items-center justify-center mb-5 transition-all duration-300 ${isActive ? 'scale-110' : ''}`}
         style={{
-          background: isActive ? '#0077B6' : '#F0F7FF',
-          border: `1px solid ${isActive ? '#006399' : '#90E0EF'}`,
+          background: isActive ? 'rgba(255,255,255,0.2)' : 'linear-gradient(135deg, #E0F4FF 0%, #CCEEFF 100%)',
+          border: `1px solid ${isActive ? 'rgba(255,255,255,0.4)' : '#90E0EF'}`,
+          boxShadow: isActive ? '0 4px 16px rgba(0,180,216,0.3)' : '0 2px 8px rgba(0,119,182,0.1)',
         }}
       >
         <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
@@ -108,7 +130,7 @@ export function DropZone({ onFiles, disabled }: Props) {
           />
           <path
             d="M10 15h5M10 18h3"
-            stroke={isActive ? '#FFFFFF' : '#48CAE4'}
+            stroke={isActive ? '#A5F3FC' : '#48CAE4'}
             strokeWidth="1.2"
             strokeLinecap="round"
           />
@@ -118,25 +140,25 @@ export function DropZone({ onFiles, disabled }: Props) {
       {/* Text Content */}
       <p
         className="font-body font-semibold text-[15px] text-center"
-        style={{ color: isActive ? '#0077B6' : '#0F172A' }}
+        style={{ color: isActive ? '#FFFFFF' : '#0F172A' }}
       >
-        {isDragging ? 'Lepaskan untuk upload' : 'Drag & drop file PDF rekening koran'}
+        {isDragging ? '✨ Lepaskan untuk upload' : '📄 Drag & drop file PDF rekening koran'}
       </p>
-      <p className="font-body text-[13px] mt-1.5 text-center" style={{ color: '#64748B' }}>
+      <p className="font-body text-[13px] mt-1.5 text-center" style={{ color: isActive ? 'rgba(255,255,255,0.85)' : '#64748B' }}>
         atau{' '}
-        <span className="font-semibold cursor-pointer" style={{ color: '#0077B6' }}>
+        <span className="font-semibold cursor-pointer" style={{ color: isActive ? '#A5F3FC' : '#0077B6' }}>
           klik untuk pilih file
         </span>
       </p>
-      <p className="font-body text-[12px] mt-2 text-center" style={{ color: '#94A3B8' }}>
+      <p className="font-body text-[12px] mt-2 text-center" style={{ color: isActive ? 'rgba(255,255,255,0.7)' : '#94A3B8' }}>
         Hanya file PDF · Beberapa file sekaligus didukung
       </p>
       
       {/* Elegant Notice */}
       <div 
-        className="mt-4 flex items-start gap-2.5 rounded-lg px-3.5 py-2.5 max-w-[280px]"
+        className="mt-4 flex items-start gap-2.5 rounded-xl px-3.5 py-2.5 max-w-[280px]"
         style={{ 
-          background: '#FFFBEB',
+          background: 'rgba(255,251,235,0.9)',
           border: '1px solid #FDE68A'
         }}
       >

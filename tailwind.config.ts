@@ -7,7 +7,7 @@ export default {
       fontFamily: {
         headline: ['Figtree', 'sans-serif'],
         body: ['DM Sans', 'sans-serif'],
-        mono: ['Roboto Mono', 'monospace'],
+        mono: ['IBM Plex Mono', 'monospace'],
       },
     },
   },

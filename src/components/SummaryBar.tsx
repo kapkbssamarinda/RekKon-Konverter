@@ -19,9 +19,9 @@ export function SummaryBar({ statements, files, onExport, onReset }: Props) {
     <div
       className="fixed bottom-0 left-0 right-0 z-50 summary-bar-safe"
       style={{
-        background: '#FFFFFF',
+        background: 'linear-gradient(135deg, #FFFFFF 0%, #F8FCFF 100%)',
         borderTop: '1px solid #E2E8F0',
-        boxShadow: '0 -1px 4px rgba(0,0,0,0.06)',
+        boxShadow: '0 -4px 16px rgba(0,0,0,0.08), 0 -1px 4px rgba(0,0,0,0.04)',
       }}
     >
 
@@ -31,7 +31,7 @@ export function SummaryBar({ statements, files, onExport, onReset }: Props) {
           {/* Stats */}
           <div className="flex items-center gap-8">
             <div className="flex items-center gap-3">
-              <IconBox size="sm" bg="#F0F7FF">
+              <IconBox size="sm" bg="linear-gradient(135deg, #E0F4FF 0%, #CCEEFF 100%)">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <path d="M2 4h12M2 8h12M2 12h8" stroke="#0077B6" strokeWidth="1.5" strokeLinecap="round"/>
                 </svg>
@@ -41,12 +41,12 @@ export function SummaryBar({ statements, files, onExport, onReset }: Props) {
                 <p className="font-body text-[11px]" style={{ color: '#64748B' }}>Transactions</p>
               </div>
             </div>
-            <div className="w-[1px] h-8" style={{ background: '#E2E8F0' }} />
+            <div className="w-[1px] h-8" style={{ background: 'linear-gradient(to bottom, transparent, #E2E8F0, transparent)' }} />
             <div className="flex items-center gap-3">
-              <IconBox size="sm" bg="#F0F7FF">
+              <IconBox size="sm" bg="linear-gradient(135deg, #F3E8FF 0%, #EDE9FE 100%)">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <rect x="2" y="4" width="12" height="8" rx="1.5" stroke="#48CAE4" strokeWidth="1.5"/>
-                  <path d="M2 6.5h12M5 4V2.5M11 4V2.5" stroke="#48CAE4" strokeWidth="1.5" strokeLinecap="round"/>
+                  <rect x="2" y="4" width="12" height="8" rx="1.5" stroke="#9333EA" strokeWidth="1.5"/>
+                  <path d="M2 6.5h12M5 4V2.5M11 4V2.5" stroke="#9333EA" strokeWidth="1.5" strokeLinecap="round"/>
                 </svg>
               </IconBox>
               <div>
@@ -54,9 +54,9 @@ export function SummaryBar({ statements, files, onExport, onReset }: Props) {
                 <p className="font-body text-[11px]" style={{ color: '#64748B' }}>Banks</p>
               </div>
             </div>
-            <div className="w-[1px] h-8" style={{ background: '#E2E8F0' }} />
+            <div className="w-[1px] h-8" style={{ background: 'linear-gradient(to bottom, transparent, #E2E8F0, transparent)' }} />
             <div className="flex items-center gap-3">
-              <IconBox size="sm" bg="#ECFDF5">
+              <IconBox size="sm" bg="linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%)">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <path d="M3 3v10a1 1 0 001 1h8a1 1 0 001-1V6l-4-3H4a1 1 0 00-1 1z" stroke="#059669" strokeWidth="1.5"/>
                   <path d="M8 2v3.5h3.5" stroke="#059669" strokeWidth="1.5" strokeLinecap="round"/>
@@ -82,14 +82,15 @@ export function SummaryBar({ statements, files, onExport, onReset }: Props) {
             <button
               onClick={onExport}
               disabled={!hasResults}
-              className="font-body font-semibold rounded-lg px-5 h-11 flex items-center gap-2 transition-colors disabled:cursor-not-allowed active:scale-[0.98]"
+              className="font-body font-semibold rounded-xl px-5 h-11 flex items-center gap-2 transition-all duration-200 disabled:cursor-not-allowed active:scale-[0.98] hover:scale-[1.02]"
               style={{
-                background: hasResults ? '#0077B6' : '#E2E8F0',
+                background: hasResults ? 'linear-gradient(135deg, #0077B6 0%, #00B4D8 100%)' : '#E2E8F0',
                 color: hasResults ? '#FFFFFF' : '#94A3B8',
                 border: 'none',
+                boxShadow: hasResults ? '0 4px 14px rgba(0,119,182,0.3)' : 'none',
               }}
-              onMouseEnter={e => { if (hasResults) (e.currentTarget as HTMLButtonElement).style.background = '#006399'; }}
-              onMouseLeave={e => { if (hasResults) (e.currentTarget as HTMLButtonElement).style.background = '#0077B6'; }}
+              onMouseEnter={e => { if (hasResults) (e.currentTarget as HTMLButtonElement).style.boxShadow = '0 6px 20px rgba(0,119,182,0.4)'; }}
+              onMouseLeave={e => { if (hasResults) (e.currentTarget as HTMLButtonElement).style.boxShadow = '0 4px 14px rgba(0,119,182,0.3)'; }}
             >
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                 <path d="M2 11v2a1 1 0 001 1h10a1 1 0 001-1v-2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />

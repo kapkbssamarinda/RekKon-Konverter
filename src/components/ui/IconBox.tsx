@@ -13,9 +13,9 @@ const DIMS: Record<Size, string> = {
 const RADIUS_DEFAULT: Record<Size, string> = {
   xs: 'rounded-lg',
   sm: 'rounded-lg',
-  md: 'rounded-xl',
+  md: 'rounded-lg',
   lg: 'rounded-xl',
-  xl: 'rounded-2xl',
+  xl: 'rounded-xl',
 };
 
 interface Props {

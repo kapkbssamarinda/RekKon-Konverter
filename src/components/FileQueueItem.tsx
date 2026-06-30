@@ -28,11 +28,11 @@ export function FileQueueItem({ item, onRemove }: Props) {
           dot: '#94A3B8'
         };
       case 'processing':
-        return { 
-          bg: '#EFF6FF', 
-          text: '#2563EB',
-          border: '#BFDBFE',
-          dot: '#3B82F6'
+        return {
+          bg: '#F0F7FF',
+          text: '#0077B6',
+          border: '#90E0EF',
+          dot: '#0077B6',
         };
       case 'done':
         return { 
@@ -58,12 +58,12 @@ export function FileQueueItem({ item, onRemove }: Props) {
     : `${Math.round(fileSizeKb)} KB`;
 
   return (
-    <div 
-      className="rounded-xl p-4 transition-all duration-200 hover-lift"
-      style={{ 
+    <div
+      className="rounded-lg p-4 transition-colors"
+      style={{
         background: '#FFFFFF',
-        boxShadow: '0 1px 3px rgba(15, 23, 42, 0.04), 0 4px 12px rgba(15, 23, 42, 0.03)',
-        border: '1px solid #E2E8F0'
+        boxShadow: '0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04)',
+        border: '1px solid #E2E8F0',
       }}
     >
       <div className="flex items-center gap-3">
@@ -156,7 +156,7 @@ export function FileQueueItem({ item, onRemove }: Props) {
           <div
             className="h-full w-full rounded-full relative overflow-hidden"
             style={{
-              background: 'linear-gradient(90deg, #3B82F6 0%, #2563EB 100%)',
+              background: '#0077B6',
               transform: `scaleX(${item.progress / 100})`,
               transformOrigin: 'left',
               transition: 'transform 0.35s cubic-bezier(0.25, 1, 0.5, 1)',

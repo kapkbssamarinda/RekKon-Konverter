@@ -11,7 +11,6 @@ const BANKS = [
   { src: mandiriLogo, name: 'Bank Mandiri' },
 ];
 
-// duplicate for seamless loop
 const MARQUEE_ITEMS = [...BANKS, ...BANKS];
 
 export function LoginPage() {
@@ -35,79 +34,78 @@ export function LoginPage() {
   }
 
   return (
-    <div
-      className="min-h-screen flex flex-col"
-      style={{ background: 'linear-gradient(180deg, #0F172A 0%, #1E293B 60%, #FAFBFC 100%)' }}
-    >
+    <div className="min-h-screen flex flex-col" style={{ background: '#FAFCFF' }}>
       {/* Header */}
-      <div className="relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #0F172A 0%, #1E293B 100%)' }}>
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-0 right-0 w-[400px] h-[400px] border border-white/20 rounded-full -translate-y-1/2 translate-x-1/2" />
-        </div>
-        <div
-          className="absolute bottom-0 left-0 right-0 h-[1px]"
-          style={{ background: 'linear-gradient(90deg, transparent 0%, #3B82F6 50%, transparent 100%)' }}
-        />
-        <div className="max-w-5xl mx-auto px-6 py-5 relative">
-          <div className="flex items-center gap-4">
+      <header
+        style={{
+          background: '#FFFFFF',
+          borderBottom: '1px solid #E2E8F0',
+          boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
+        }}
+      >
+        <div className="max-w-5xl mx-auto px-6 py-4">
+          <div className="flex items-center gap-3">
             <div
-              className="w-11 h-11 rounded-xl flex items-center justify-center"
-              style={{
-                background: 'linear-gradient(135deg, rgba(59,130,246,0.2) 0%, rgba(59,130,246,0.1) 100%)',
-                border: '1px solid rgba(59,130,246,0.3)',
-              }}
+              className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
+              style={{ background: '#F0F7FF', border: '1px solid #90E0EF' }}
             >
-              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-                <rect x="2" y="4" width="18" height="14" rx="2" stroke="#60A5FA" strokeWidth="1.5"/>
-                <path d="M5 9h12M5 13h8" stroke="#60A5FA" strokeWidth="1.5" strokeLinecap="round"/>
-                <circle cx="17" cy="13" r="1.5" fill="#34D399"/>
+              <svg width="20" height="20" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+                <rect x="2" y="4" width="18" height="14" rx="2" stroke="#0077B6" strokeWidth="1.5"/>
+                <path d="M5 9h12M5 13h8" stroke="#0077B6" strokeWidth="1.5" strokeLinecap="round"/>
+                <circle cx="17" cy="13" r="1.5" fill="#059669"/>
               </svg>
             </div>
             <div>
-              <h1 className="font-headline font-semibold text-xl tracking-tight" style={{ color: '#F8FAFC' }}>
+              <h1 className="font-headline font-semibold text-[18px]" style={{ color: '#0F172A' }}>
                 RekKoran Converter
               </h1>
-              <p className="font-body text-[12px] mt-0.5" style={{ color: '#94A3B8' }}>
+              <p className="font-body text-[12px]" style={{ color: '#64748B' }}>
                 PDF Rekening Koran → Excel
               </p>
             </div>
           </div>
         </div>
-      </div>
+      </header>
 
       {/* Login Card */}
       <div className="flex-1 flex items-center justify-center px-6 py-12">
         <div
-          className="w-full max-w-[400px] rounded-2xl p-8 animate-fade-in-scale"
+          className="w-full max-w-[420px] animate-fade-in-scale"
           style={{
             background: '#FFFFFF',
             border: '1px solid #E2E8F0',
-            boxShadow: '0 20px 60px rgba(15, 23, 42, 0.15), 0 4px 16px rgba(15, 23, 42, 0.08)',
+            borderRadius: '12px',
+            boxShadow: '0 4px 12px rgba(0,0,0,0.07), 0 1px 3px rgba(0,0,0,0.04)',
+            padding: '40px',
           }}
         >
           {/* Card Header */}
           <div className="mb-8">
             <div
-              className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
-              style={{ background: '#EFF6FF' }}
+              className="w-12 h-12 rounded-lg flex items-center justify-center mb-5"
+              style={{ background: '#F0F7FF', border: '1px solid #90E0EF' }}
             >
-              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-                <circle cx="11" cy="8" r="3.5" stroke="#2563EB" strokeWidth="1.5"/>
-                <path d="M4 18c0-3.314 3.134-6 7-6s7 2.686 7 6" stroke="#2563EB" strokeWidth="1.5" strokeLinecap="round"/>
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+                <circle cx="11" cy="8" r="3.5" stroke="#0077B6" strokeWidth="1.5"/>
+                <path d="M4 18c0-3.314 3.134-6 7-6s7 2.686 7 6" stroke="#0077B6" strokeWidth="1.5" strokeLinecap="round"/>
               </svg>
             </div>
-            <h2 className="font-headline font-semibold text-[22px]" style={{ color: '#0F172A' }}>
+            <h2 className="font-headline font-semibold" style={{ fontSize: '22px', color: '#0F172A', lineHeight: '1.3' }}>
               Masuk ke Akun
             </h2>
-            <p className="font-body text-[13px] mt-1" style={{ color: '#64748B' }}>
+            <p className="font-body mt-1.5" style={{ fontSize: '14px', color: '#64748B', lineHeight: '1.55' }}>
               Masukkan kredensial untuk melanjutkan
             </p>
           </div>
 
           {/* Form */}
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-5">
             <div className="flex flex-col gap-1.5">
-              <label htmlFor="login-username" className="font-body font-medium text-[13px]" style={{ color: '#374151' }}>
+              <label
+                htmlFor="login-username"
+                className="font-body"
+                style={{ fontSize: '14px', fontWeight: 600, color: '#0F172A' }}
+              >
                 Username
               </label>
               <input
@@ -119,12 +117,16 @@ export function LoginPage() {
                 autoComplete="username"
                 placeholder="Masukkan username"
                 disabled={isLoading}
-                className="px-4 py-3 input-field"
+                className="px-4 py-2.5 input-field"
               />
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label htmlFor="login-password" className="font-body font-medium text-[13px]" style={{ color: '#374151' }}>
+              <label
+                htmlFor="login-password"
+                className="font-body"
+                style={{ fontSize: '14px', fontWeight: 600, color: '#0F172A' }}
+              >
                 Password
               </label>
               <input
@@ -136,7 +138,7 @@ export function LoginPage() {
                 autoComplete="current-password"
                 placeholder="Masukkan password"
                 disabled={isLoading}
-                className="px-4 py-3 input-field"
+                className="px-4 py-2.5 input-field"
               />
             </div>
 
@@ -145,15 +147,25 @@ export function LoginPage() {
             <button
               type="submit"
               disabled={isLoading || !username || !password}
-              className="mt-2 w-full rounded-xl py-3.5 font-body font-semibold text-[14px] text-white transition-all active:scale-[0.98]"
+              className="w-full font-body transition-colors"
               style={{
-                background: isLoading || !username || !password
-                  ? '#94A3B8'
-                  : 'linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%)',
-                boxShadow: isLoading || !username || !password
-                  ? 'none'
-                  : '0 4px 12px rgba(37, 99, 235, 0.4)',
+                background: isLoading || !username || !password ? '#E2E8F0' : '#0077B6',
+                color: isLoading || !username || !password ? '#94A3B8' : '#FFFFFF',
+                borderRadius: '8px',
+                fontSize: '15px',
+                fontWeight: 600,
+                minHeight: '44px',
+                padding: '10px 24px',
+                border: 'none',
                 cursor: isLoading || !username || !password ? 'not-allowed' : 'pointer',
+              }}
+              onMouseEnter={e => {
+                if (!isLoading && username && password)
+                  (e.currentTarget as HTMLButtonElement).style.background = '#006399';
+              }}
+              onMouseLeave={e => {
+                if (!isLoading && username && password)
+                  (e.currentTarget as HTMLButtonElement).style.background = '#0077B6';
               }}
             >
               {isLoading ? 'Memverifikasi...' : 'Masuk'}
@@ -163,27 +175,23 @@ export function LoginPage() {
       </div>
 
       {/* Bank Logos Marquee */}
-      <div style={{ background: '#F8FAFC', borderTop: '1px solid #F1F5F9' }}>
+      <div style={{ background: '#F0F7FF', borderTop: '1px solid #E2E8F0' }}>
         <p
           className="text-center font-body pt-4 pb-3"
-          style={{ fontSize: '11px', color: '#64748B' }}
+          style={{ fontSize: '11px', color: '#64748B', fontWeight: 600, letterSpacing: '0.06em' }}
         >
-          Format rekening koran yang didukung
+          FORMAT REKENING KORAN YANG DIDUKUNG
         </p>
-        {/* sr-only list of supported banks for screen readers */}
         <p className="sr-only">BNI, BRI, Bank Mandiri</p>
         <div className="relative overflow-hidden pb-5" aria-hidden="true">
-          {/* Left fade mask */}
           <div
             className="absolute inset-y-0 left-0 w-20 z-10 pointer-events-none"
-            style={{ background: 'linear-gradient(to right, #F8FAFC, transparent)' }}
+            style={{ background: 'linear-gradient(to right, #F0F7FF, transparent)' }}
           />
-          {/* Right fade mask */}
           <div
             className="absolute inset-y-0 right-0 w-20 z-10 pointer-events-none"
-            style={{ background: 'linear-gradient(to left, #F8FAFC, transparent)' }}
+            style={{ background: 'linear-gradient(to left, #F0F7FF, transparent)' }}
           />
-          {/* Scrolling track */}
           <div className="flex animate-marquee" style={{ width: 'max-content' }}>
             {MARQUEE_ITEMS.map((bank, i) => (
               <div
@@ -194,13 +202,7 @@ export function LoginPage() {
                 <img
                   src={bank.src}
                   alt=""
-                  style={{
-                    height: '28px',
-                    width: 'auto',
-                    maxWidth: '100px',
-                    objectFit: 'contain',
-                    opacity: 0.45,
-                  }}
+                  style={{ height: '28px', width: 'auto', maxWidth: '100px', objectFit: 'contain', opacity: 0.5 }}
                 />
               </div>
             ))}

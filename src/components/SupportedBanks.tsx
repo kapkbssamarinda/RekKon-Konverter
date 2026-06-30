@@ -28,9 +28,9 @@ export function SupportedBanks() {
     <div>
       {/* Section Header */}
       <div className="flex items-center gap-2 mb-4">
-        <div 
-          className="w-1.5 h-5 rounded-full"
-          style={{ background: 'linear-gradient(180deg, #3B82F6 0%, #2563EB 100%)' }}
+        <div
+          className="w-1 h-5 rounded-full"
+          style={{ background: '#0077B6' }}
         />
         <p className="font-body font-semibold text-[13px]" style={{ color: '#0F172A' }}>
           Supported Banks

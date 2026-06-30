@@ -30,7 +30,7 @@ function Toggle({
         disabled={disabled}
         onClick={() => onChange(!checked)}
         className="relative flex-shrink-0 w-10 h-[22px] rounded-full transition-colors duration-200 focus:outline-none"
-        style={{ background: checked ? '#2563EB' : '#CBD5E1' }}
+        style={{ background: checked ? '#0077B6' : '#CBD5E1' }}
       >
         <span
           className="absolute top-[3px] w-4 h-4 rounded-full bg-white shadow-sm transition-transform duration-200"
@@ -362,7 +362,7 @@ export function UserModal({ mode, user, token, onSuccess, onClose }: Props) {
                         className="px-2.5 py-1 rounded-lg font-mono text-[11px] transition-all"
                         style={
                           trialDuration === v
-                            ? { background: '#DBEAFE', color: '#1D4ED8', border: '1px solid #BFDBFE' }
+                            ? { background: '#E0EFFF', color: '#0077B6', border: '1px solid #90E0EF' }
                             : { background: '#F1F5F9', color: '#64748B', border: '1px solid #E2E8F0' }
                         }
                       >
@@ -384,19 +384,21 @@ export function UserModal({ mode, user, token, onSuccess, onClose }: Props) {
               type="button"
               onClick={onClose}
               disabled={isLoading}
-              className="flex-1 rounded-xl py-3 font-body font-medium text-[14px] transition-colors"
-              style={{ background: '#F1F5F9', color: '#64748B', border: '1px solid #E2E8F0' }}
+              className="flex-1 rounded-lg py-3 font-body font-semibold text-[14px] transition-colors"
+              style={{ background: '#F8FAFC', color: '#475569', border: '1.5px solid #E2E8F0' }}
             >
               Batal
             </button>
             <button
               type="submit"
               disabled={isLoading}
-              className="flex-1 rounded-xl py-3 font-body font-semibold text-[14px] text-white transition-transform active:scale-[0.98]"
+              className="flex-1 rounded-lg py-3 font-body font-semibold text-[14px] text-white transition-colors active:scale-[0.98]"
               style={{
-                background: isLoading ? '#94A3B8' : 'linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%)',
-                boxShadow: isLoading ? 'none' : '0 4px 12px rgba(37,99,235,0.35)',
+                background: isLoading ? '#94A3B8' : '#0077B6',
+                border: 'none',
               }}
+              onMouseEnter={e => { if (!isLoading) (e.currentTarget as HTMLButtonElement).style.background = '#006399'; }}
+              onMouseLeave={e => { if (!isLoading) (e.currentTarget as HTMLButtonElement).style.background = '#0077B6'; }}
             >
               {isLoading ? 'Menyimpan...' : mode === 'create' ? 'Tambah User' : 'Simpan'}
             </button>

@@ -18,22 +18,18 @@ type AppStep = 'upload' | 'processing' | 'done';
 
 function LoadingScreen() {
   return (
-    <div
-      className="min-h-screen flex items-center justify-center"
-      style={{ background: 'linear-gradient(180deg, #0F172A 0%, #1E293B 100%)' }}
-    >
+    <div className="min-h-screen flex items-center justify-center" style={{ background: '#FAFCFF' }}>
       <div className="flex flex-col items-center gap-4">
-        <IconBox
-          size="xl"
-          bg="linear-gradient(135deg, rgba(59,130,246,0.2) 0%, rgba(59,130,246,0.1) 100%)"
-          border="1px solid rgba(59,130,246,0.3)"
+        <div
+          className="w-14 h-14 rounded-xl flex items-center justify-center"
+          style={{ background: '#F0F7FF', border: '1px solid #90E0EF' }}
         >
-          <svg width="26" height="26" viewBox="0 0 22 22" fill="none">
-            <rect x="2" y="4" width="18" height="14" rx="2" stroke="#60A5FA" strokeWidth="1.5"/>
-            <path d="M5 9h12M5 13h8" stroke="#60A5FA" strokeWidth="1.5" strokeLinecap="round"/>
-            <circle cx="17" cy="13" r="1.5" fill="#34D399"/>
+          <svg width="26" height="26" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+            <rect x="2" y="4" width="18" height="14" rx="2" stroke="#0077B6" strokeWidth="1.5"/>
+            <path d="M5 9h12M5 13h8" stroke="#0077B6" strokeWidth="1.5" strokeLinecap="round"/>
+            <circle cx="17" cy="13" r="1.5" fill="#059669"/>
           </svg>
-        </IconBox>
+        </div>
         <LoadingDots />
       </div>
     </div>
@@ -45,7 +41,6 @@ function App() {
   const { files, statements, addFiles, removeFile, reset } = useFileProcessor();
   const [exportError, setExportError] = useState<string | null>(null);
 
-  // Clear converter state whenever a different user logs in
   useEffect(() => {
     reset();
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -77,56 +72,36 @@ function App() {
     : null;
 
   return (
-    <div className="min-h-screen pb-[120px] sm:pb-[80px]" style={{ background: '#FAFBFC' }}>
-      {/* Elegant Dark Header */}
+    <div className="min-h-screen pb-[120px] sm:pb-[80px]" style={{ background: '#FAFCFF' }}>
+      {/* Header — clean white, MediCare+ style */}
       <header
-        className="relative overflow-hidden animate-fade-in-scale"
+        className="animate-fade-in-scale"
         style={{
-          background: 'linear-gradient(180deg, #0F172A 0%, #1E293B 100%)',
-          boxShadow: '0 4px 20px rgba(15, 23, 42, 0.15)',
+          background: '#FFFFFF',
+          borderBottom: '1px solid #E2E8F0',
+          boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
         }}
       >
-        {/* Subtle geometric pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-0 right-0 w-[400px] h-[400px] border border-white/20 rounded-full -translate-y-1/2 translate-x-1/2" />
-          <div className="absolute bottom-0 left-1/4 w-[200px] h-[200px] border border-white/20 rounded-full translate-y-1/2" />
-        </div>
-
-        {/* Accent line */}
-        <div
-          className="absolute bottom-0 left-0 right-0 h-[1px]"
-          style={{
-            background: 'linear-gradient(90deg, transparent 0%, #3B82F6 50%, transparent 100%)',
-          }}
-        />
-
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-3 sm:py-5 relative">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
           <div className="flex items-center justify-between">
             {/* Logo & Title */}
-            <div className="flex items-center gap-3 sm:gap-4">
+            <div className="flex items-center gap-3">
               <div
-                className="w-9 h-9 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center flex-shrink-0"
-                style={{
-                  background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(59, 130, 246, 0.1) 100%)',
-                  border: '1px solid rgba(59, 130, 246, 0.3)',
-                }}
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center flex-shrink-0"
+                style={{ background: '#F0F7FF', border: '1px solid #90E0EF' }}
               >
-                <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-                  <rect x="2" y="4" width="18" height="14" rx="2" stroke="#60A5FA" strokeWidth="1.5"/>
-                  <path d="M5 9h12M5 13h8" stroke="#60A5FA" strokeWidth="1.5" strokeLinecap="round"/>
-                  <circle cx="17" cy="13" r="1.5" fill="#34D399"/>
+                <svg width="20" height="20" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+                  <rect x="2" y="4" width="18" height="14" rx="2" stroke="#0077B6" strokeWidth="1.5"/>
+                  <path d="M5 9h12M5 13h8" stroke="#0077B6" strokeWidth="1.5" strokeLinecap="round"/>
+                  <circle cx="17" cy="13" r="1.5" fill="#059669"/>
                 </svg>
               </div>
-
               <div>
-                <h1
-                  className="font-headline font-semibold text-xl tracking-tight"
-                  style={{ color: '#F8FAFC' }}
-                >
+                <h1 className="font-headline font-semibold text-[18px]" style={{ color: '#0F172A' }}>
                   RekKoran Converter
                 </h1>
-                <p className="font-body text-[12px] mt-0.5 hidden sm:block" style={{ color: '#94A3B8' }}>
-                  PDF Rekening Koran → Excel · Processing happens locally
+                <p className="font-body text-[12px] hidden sm:block" style={{ color: '#64748B' }}>
+                  PDF Rekening Koran → Excel · Diproses lokal di browser
                 </p>
               </div>
             </div>
@@ -137,47 +112,49 @@ function App() {
                 <StepIndicator step={step} />
               </div>
 
-              {/* Trial badge — desktop only */}
+              {/* Trial badge */}
               {isTrial && trialDaysLeft !== null && (
                 <div
-                  className="hidden sm:flex font-mono text-[11px] px-2.5 py-1 rounded-lg"
+                  className="hidden sm:flex font-mono text-[11px] px-2.5 py-1 rounded"
                   style={{
-                    background: trialDaysLeft <= 3 ? 'rgba(239,68,68,0.12)' : 'rgba(16,185,129,0.1)',
-                    color: trialDaysLeft <= 3 ? '#FCA5A5' : '#6EE7B7',
-                    border: `1px solid ${trialDaysLeft <= 3 ? 'rgba(239,68,68,0.25)' : 'rgba(16,185,129,0.2)'}`,
+                    background: trialDaysLeft <= 3 ? '#FEF2F2' : '#ECFDF5',
+                    color: trialDaysLeft <= 3 ? '#DC2626' : '#059669',
+                    border: `1px solid ${trialDaysLeft <= 3 ? '#FECACA' : '#A7F3D0'}`,
+                    fontWeight: 600,
                   }}
                 >
                   Trial · {trialDaysLeft}h
                 </div>
               )}
 
-              {/* User info — desktop only */}
+              {/* User info */}
               <div
                 className="hidden sm:flex font-body text-[12px] px-3 py-1.5 rounded-lg items-center gap-2"
                 style={{
-                  background: 'rgba(255,255,255,0.06)',
-                  color: '#CBD5E1',
-                  border: '1px solid rgba(255,255,255,0.1)',
+                  background: '#F8FAFC',
+                  color: '#475569',
+                  border: '1px solid #E2E8F0',
                 }}
               >
                 <span>{user?.username}</span>
               </div>
 
-              {/* Admin button — icon+text on desktop, icon-only on mobile */}
+              {/* Admin button — secondary style */}
               {user?.role === 'admin' && (
                 <button
                   onClick={() => setPage('admin')}
                   aria-label="Buka halaman Admin"
-                  className="flex items-center justify-center gap-1.5 font-body text-[12px] w-9 h-9 sm:w-auto sm:h-auto sm:px-3 sm:py-1.5 rounded-lg transition-all"
+                  className="flex items-center justify-center gap-1.5 font-body text-[13px] w-9 h-9 sm:w-auto sm:h-auto sm:px-3 sm:py-2 rounded-lg transition-colors"
                   style={{
-                    background: 'rgba(139,92,246,0.12)',
-                    color: '#C4B5FD',
-                    border: '1px solid rgba(139,92,246,0.25)',
+                    background: '#FFFFFF',
+                    color: '#0077B6',
+                    border: '1.5px solid #0077B6',
+                    fontWeight: 600,
                   }}
-                  onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = 'rgba(139,92,246,0.2)'; }}
-                  onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = 'rgba(139,92,246,0.12)'; }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = '#F0F7FF'; }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = '#FFFFFF'; }}
                 >
-                  <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                     <circle cx="6" cy="6" r="3" stroke="currentColor" strokeWidth="1.5"/>
                     <circle cx="12" cy="6" r="3" stroke="currentColor" strokeWidth="1.5"/>
                     <path d="M0 14c0-2.5 2.7-4 6-4s6 1.5 6 4M9 12c.4-.8 1.6-2 3-2s2.6 1.2 3 2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
@@ -186,32 +163,39 @@ function App() {
                 </button>
               )}
 
-              {/* Logout button — icon+text on desktop, icon-only on mobile */}
+              {/* Logout button — ghost destructive */}
               <button
                 onClick={logout}
                 aria-label="Logout"
-                className="flex items-center justify-center gap-1.5 font-body text-[12px] w-9 h-9 sm:w-auto sm:h-auto sm:px-3 sm:py-1.5 rounded-lg transition-all"
+                className="flex items-center justify-center gap-1.5 font-body text-[13px] w-9 h-9 sm:w-auto sm:h-auto sm:px-3 sm:py-2 rounded-lg transition-colors"
                 style={{
-                  background: 'rgba(255,255,255,0.05)',
-                  color: '#94A3B8',
-                  border: '1px solid rgba(255,255,255,0.1)',
+                  background: '#FFFFFF',
+                  color: '#64748B',
+                  border: '1px solid #E2E8F0',
+                  fontWeight: 600,
                 }}
-                onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.color = '#FCA5A5'; (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(239,68,68,0.3)'; }}
-                onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.color = '#94A3B8'; (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(255,255,255,0.1)'; }}
+                onMouseEnter={e => {
+                  const btn = e.currentTarget as HTMLButtonElement;
+                  btn.style.color = '#DC2626';
+                  btn.style.borderColor = '#FECACA';
+                  btn.style.background = '#FEF2F2';
+                }}
+                onMouseLeave={e => {
+                  const btn = e.currentTarget as HTMLButtonElement;
+                  btn.style.color = '#64748B';
+                  btn.style.borderColor = '#E2E8F0';
+                  btn.style.background = '#FFFFFF';
+                }}
               >
-                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                   <path d="M6 3H3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h3M10 11l3-3-3-3M13 8H6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
                 <span className="hidden sm:inline" aria-hidden="true">Logout</span>
               </button>
 
               <div
-                className="font-mono text-[11px] px-2.5 py-1 rounded-lg"
-                style={{
-                  background: 'rgba(255, 255, 255, 0.05)',
-                  color: '#64748B',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
-                }}
+                className="font-mono text-[11px] px-2 py-1 rounded"
+                style={{ background: '#F0F7FF', color: '#64748B', border: '1px solid #E2E8F0' }}
               >
                 v0.1.0
               </div>
@@ -222,7 +206,6 @@ function App() {
 
       {/* Main Content */}
       <main className="max-w-5xl mx-auto px-4 sm:px-6 pt-6 sm:pt-10">
-        {/* Upload Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div className="animate-fade-in-up delay-100">
             <DropZone onFiles={addFiles} />
@@ -232,19 +215,16 @@ function App() {
           </div>
         </div>
 
-        {/* Supported Banks */}
         <div className="mt-10 animate-fade-in-up delay-300">
           <SupportedBanks />
         </div>
 
-        {/* Preview Table */}
         {statements.length > 0 && (
           <div className="mt-10 animate-fade-in-up">
             <PreviewTable statements={statements} />
           </div>
         )}
 
-        {/* Export error */}
         {exportError && (
           <div className="mt-6 animate-error-in">
             <ErrorBanner message={exportError} />
@@ -253,36 +233,31 @@ function App() {
 
         {/* Privacy Notice */}
         <div
-          className="mt-10 animate-fade-in-up delay-400 flex items-start gap-4 rounded-xl px-5 py-4"
+          className="mt-10 animate-fade-in-up delay-400 flex items-start gap-4 px-5 py-4"
           style={{
             background: '#FFFFFF',
             border: '1px solid #E2E8F0',
-            boxShadow: '0 1px 3px rgba(15, 23, 42, 0.04)',
+            borderRadius: '8px',
+            boxShadow: '0 1px 3px rgba(0,0,0,0.04)',
           }}
         >
-          <IconBox size="md" bg="#EFF6FF">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-              <path
-                d="M9 2L3 5.5V9c0 3 2.5 4.5 6 6 3.5-1.5 6-3 6-6V5.5L9 2Z"
-                stroke="#2563EB"
-                strokeWidth="1.5"
-                strokeLinejoin="round"
-              />
-              <path d="M6.5 9l2 2 3-3" stroke="#2563EB" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <IconBox size="md" bg="#F0F7FF">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+              <path d="M9 2L3 5.5V9c0 3 2.5 4.5 6 6 3.5-1.5 6-3 6-6V5.5L9 2Z" stroke="#0077B6" strokeWidth="1.5" strokeLinejoin="round"/>
+              <path d="M6.5 9l2 2 3-3" stroke="#0077B6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </IconBox>
           <div>
-            <p className="font-body font-medium text-[13px]" style={{ color: '#0F172A' }}>
+            <p className="font-body font-semibold text-[13px]" style={{ color: '#0F172A' }}>
               100% Private & Secure
             </p>
-            <p className="font-body text-[12px] mt-0.5" style={{ color: '#64748B' }}>
-              Your PDF files are processed directly in your browser. No data is ever sent to any server.
+            <p className="font-body text-[13px] mt-0.5" style={{ color: '#64748B', lineHeight: '1.55' }}>
+              File PDF diproses langsung di browser. Tidak ada data yang dikirim ke server.
             </p>
           </div>
         </div>
       </main>
 
-      {/* Summary Bar */}
       <SummaryBar
         statements={statements}
         files={files}

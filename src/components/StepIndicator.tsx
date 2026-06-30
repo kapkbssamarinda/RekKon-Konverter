@@ -26,21 +26,21 @@ export function StepIndicator({ step }: Props) {
               <div
                 className="w-7 h-7 rounded-lg flex items-center justify-center text-[12px] font-medium transition-all duration-300"
                 style={{
-                  background: isDone 
-                    ? 'rgba(16, 185, 129, 0.2)' 
-                    : isActive 
-                    ? 'rgba(59, 130, 246, 0.2)' 
-                    : 'rgba(255, 255, 255, 0.05)',
-                  color: isDone 
-                    ? '#34D399' 
-                    : isActive 
-                    ? '#60A5FA' 
-                    : '#64748B',
-                  border: isDone 
-                    ? '1px solid rgba(16, 185, 129, 0.3)' 
-                    : isActive 
-                    ? '1px solid rgba(59, 130, 246, 0.3)' 
-                    : '1px solid rgba(255, 255, 255, 0.1)'
+                  background: isDone
+                    ? 'rgba(5, 150, 105, 0.12)'
+                    : isActive
+                    ? 'rgba(0, 119, 182, 0.12)'
+                    : '#F8FAFC',
+                  color: isDone
+                    ? '#059669'
+                    : isActive
+                    ? '#0077B6'
+                    : '#94A3B8',
+                  border: isDone
+                    ? '1px solid rgba(5, 150, 105, 0.3)'
+                    : isActive
+                    ? '1px solid rgba(0, 119, 182, 0.3)'
+                    : '1px solid #E2E8F0',
                 }}
               >
                 {isDone ? (
@@ -54,13 +54,13 @@ export function StepIndicator({ step }: Props) {
               
               {/* Step Label */}
               <span
-                className="font-body text-[12px] font-medium hidden sm:block"
+                className="font-body text-[12px] font-semibold hidden sm:block"
                 style={{
-                  color: isDone 
-                    ? '#34D399' 
-                    : isActive 
-                    ? '#94A3B8' 
-                    : '#475569'
+                  color: isDone
+                    ? '#059669'
+                    : isActive
+                    ? '#0077B6'
+                    : '#94A3B8',
                 }}
               >
                 {s.label}

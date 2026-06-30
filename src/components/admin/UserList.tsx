@@ -79,9 +79,9 @@ export function UserList({ users, currentUserId, onEdit, onDelete }: Props) {
       <div
         className="grid grid-user-list px-4 sm:px-6 py-2.5 font-body font-medium text-[11px] uppercase tracking-wider"
         style={{
-          background: '#F8FAFC',
-          borderBottom: '1px solid #F1F5F9',
-          color: '#64748B',
+          background: '#F0F7FF',
+          borderBottom: '1px solid #E2E8F0',
+          color: '#475569',
         }}
       >
         <span>User</span>
@@ -93,8 +93,8 @@ export function UserList({ users, currentUserId, onEdit, onDelete }: Props) {
       {/* Rows */}
       {users.map((u, idx) => {
         const isSelf = u.id === currentUserId;
-        const avatarBg = u.role === 'admin' ? '#F3E8FF' : '#EFF6FF';
-        const avatarColor = u.role === 'admin' ? '#7C3AED' : '#2563EB';
+        const avatarBg = u.role === 'admin' ? '#E0EFFF' : '#F0F7FF';
+        const avatarColor = u.role === 'admin' ? '#005280' : '#0077B6';
         const trialExpired = u.isTrial && u.trialExpiresAt ? new Date(u.trialExpiresAt) < new Date() : false;
 
         return (
@@ -157,7 +157,7 @@ export function UserList({ users, currentUserId, onEdit, onDelete }: Props) {
                 </div>
                 <span
                   className="font-mono text-[10px]"
-                  style={{ color: u.role === 'admin' ? '#7C3AED' : '#64748B' }}
+                  style={{ color: u.role === 'admin' ? '#005280' : '#64748B' }}
                 >
                   {u.role}
                 </span>
@@ -184,8 +184,8 @@ export function UserList({ users, currentUserId, onEdit, onDelete }: Props) {
                 title="Edit"
                 onMouseEnter={e => {
                   const el = e.currentTarget as HTMLButtonElement;
-                  el.style.background = '#EFF6FF';
-                  el.style.color = '#2563EB';
+                  el.style.background = '#F0F7FF';
+                  el.style.color = '#0077B6';
                 }}
                 onMouseLeave={e => {
                   const el = e.currentTarget as HTMLButtonElement;

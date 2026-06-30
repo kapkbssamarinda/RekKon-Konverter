@@ -17,20 +17,13 @@ export function SummaryBar({ statements, files, onExport, onReset }: Props) {
 
   return (
     <div
-      className="fixed bottom-0 left-0 right-0 backdrop-blur-xl z-50 summary-bar-safe"
+      className="fixed bottom-0 left-0 right-0 z-50 summary-bar-safe"
       style={{
-        background: 'rgba(255, 255, 255, 0.95)',
+        background: '#FFFFFF',
         borderTop: '1px solid #E2E8F0',
-        boxShadow: '0 -4px 20px rgba(15, 23, 42, 0.06)'
+        boxShadow: '0 -1px 4px rgba(0,0,0,0.06)',
       }}
     >
-      {/* Top accent line */}
-      <div
-        className="absolute top-0 left-0 right-0 h-[1px]"
-        style={{
-          background: 'linear-gradient(90deg, transparent 0%, #E2E8F0 20%, #E2E8F0 80%, transparent 100%)'
-        }}
-      />
 
       {/* Desktop layout */}
       <div className="hidden sm:block max-w-5xl mx-auto px-6 py-4">
@@ -38,9 +31,9 @@ export function SummaryBar({ statements, files, onExport, onReset }: Props) {
           {/* Stats */}
           <div className="flex items-center gap-8">
             <div className="flex items-center gap-3">
-              <IconBox size="sm" bg="#EFF6FF">
+              <IconBox size="sm" bg="#F0F7FF">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path d="M2 4h12M2 8h12M2 12h8" stroke="#2563EB" strokeWidth="1.5" strokeLinecap="round"/>
+                  <path d="M2 4h12M2 8h12M2 12h8" stroke="#0077B6" strokeWidth="1.5" strokeLinecap="round"/>
                 </svg>
               </IconBox>
               <div>
@@ -50,10 +43,10 @@ export function SummaryBar({ statements, files, onExport, onReset }: Props) {
             </div>
             <div className="w-[1px] h-8" style={{ background: '#E2E8F0' }} />
             <div className="flex items-center gap-3">
-              <IconBox size="sm" bg="#F3E8FF">
+              <IconBox size="sm" bg="#F0F7FF">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <rect x="2" y="4" width="12" height="8" rx="1.5" stroke="#9333EA" strokeWidth="1.5"/>
-                  <path d="M2 6.5h12M5 4V2.5M11 4V2.5" stroke="#9333EA" strokeWidth="1.5" strokeLinecap="round"/>
+                  <rect x="2" y="4" width="12" height="8" rx="1.5" stroke="#48CAE4" strokeWidth="1.5"/>
+                  <path d="M2 6.5h12M5 4V2.5M11 4V2.5" stroke="#48CAE4" strokeWidth="1.5" strokeLinecap="round"/>
                 </svg>
               </IconBox>
               <div>
@@ -89,12 +82,14 @@ export function SummaryBar({ statements, files, onExport, onReset }: Props) {
             <button
               onClick={onExport}
               disabled={!hasResults}
-              className="font-body font-medium rounded-xl px-5 h-11 flex items-center gap-2 transition-all duration-200 disabled:cursor-not-allowed hover-lift active:scale-[0.97]"
+              className="font-body font-semibold rounded-lg px-5 h-11 flex items-center gap-2 transition-colors disabled:cursor-not-allowed active:scale-[0.98]"
               style={{
-                background: hasResults ? 'linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%)' : '#E2E8F0',
+                background: hasResults ? '#0077B6' : '#E2E8F0',
                 color: hasResults ? '#FFFFFF' : '#94A3B8',
-                boxShadow: hasResults ? '0 4px 12px rgba(37, 99, 235, 0.3)' : 'none',
+                border: 'none',
               }}
+              onMouseEnter={e => { if (hasResults) (e.currentTarget as HTMLButtonElement).style.background = '#006399'; }}
+              onMouseLeave={e => { if (hasResults) (e.currentTarget as HTMLButtonElement).style.background = '#0077B6'; }}
             >
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                 <path d="M2 11v2a1 1 0 001 1h10a1 1 0 001-1v-2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
@@ -124,8 +119,8 @@ export function SummaryBar({ statements, files, onExport, onReset }: Props) {
           {files.length > 0 && (
             <button
               onClick={onReset}
-              className="flex-shrink-0 font-body font-medium rounded-xl px-4 h-11 transition-all duration-200 active:scale-[0.97]"
-              style={{ background: '#FFFFFF', color: '#64748B', border: '1px solid #E2E8F0' }}
+              className="flex-shrink-0 font-body font-semibold rounded-lg px-4 h-11 transition-colors active:scale-[0.98]"
+              style={{ background: '#FFFFFF', color: '#475569', border: '1.5px solid #E2E8F0' }}
             >
               Reset
             </button>
@@ -133,11 +128,11 @@ export function SummaryBar({ statements, files, onExport, onReset }: Props) {
           <button
             onClick={onExport}
             disabled={!hasResults}
-            className="flex-1 font-body font-semibold rounded-xl h-11 flex items-center justify-center gap-2 transition-all duration-200 disabled:cursor-not-allowed active:scale-[0.97]"
+            className="flex-1 font-body font-semibold rounded-lg h-11 flex items-center justify-center gap-2 transition-colors disabled:cursor-not-allowed active:scale-[0.98]"
             style={{
-              background: hasResults ? 'linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%)' : '#E2E8F0',
+              background: hasResults ? '#0077B6' : '#E2E8F0',
               color: hasResults ? '#FFFFFF' : '#94A3B8',
-              boxShadow: hasResults ? '0 4px 12px rgba(37, 99, 235, 0.3)' : 'none',
+              border: 'none',
             }}
           >
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">

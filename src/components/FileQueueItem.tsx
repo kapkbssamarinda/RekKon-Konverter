@@ -141,7 +141,7 @@ export function FileQueueItem({ item, onRemove }: Props) {
             background: '#F8FAFC',
             color: '#94A3B8'
           }}
-          aria-label={`Hapus file ${item.name}`}
+          aria-label={`Hapus file ${item.file.name}`}
           title="Remove"
         >
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none">

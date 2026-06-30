@@ -247,7 +247,7 @@ export function AdminPage() {
             </div>
             <button
               onClick={() => setModal({ open: true, mode: 'create' })}
-              className="flex items-center gap-2 px-4 py-2.5 rounded-lg font-body font-semibold text-[13px] text-white transition-colors"
+              className="flex items-center gap-2 px-4 py-2.5 rounded-lg font-body font-semibold text-[13px] text-white transition-colors cursor-pointer"
               style={{ background: '#0077B6', border: 'none' }}
               onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = '#006399'; }}
               onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = '#0077B6'; }}

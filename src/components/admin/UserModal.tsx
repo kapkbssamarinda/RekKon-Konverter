@@ -1,5 +1,6 @@
 import { useState, useEffect, type FormEvent } from 'react';
 import type { PublicUser } from '../../types/auth';
+import { ErrorBanner } from '../ui/ErrorBanner';
 
 function Toggle({
   checked,
@@ -129,12 +130,6 @@ export function UserModal({ mode, user, token, onSuccess, onClose }: Props) {
     }
   }
 
-  const inputStyle = {
-    background: '#F8FAFC',
-    border: '1.5px solid #E2E8F0',
-    color: '#0F172A',
-  };
-
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center p-4"
@@ -177,10 +172,7 @@ export function UserModal({ mode, user, token, onSuccess, onClose }: Props) {
               maxLength={32}
               disabled={isLoading}
               placeholder="Masukkan username (3–32 karakter)"
-              className="rounded-xl px-4 py-3 font-body text-[14px] outline-none transition-all"
-              style={inputStyle}
-              onFocus={e => { (e.currentTarget as HTMLInputElement).style.borderColor = '#93C5FD'; }}
-              onBlur={e => { (e.currentTarget as HTMLInputElement).style.borderColor = '#E2E8F0'; }}
+              className="px-4 py-3 input-field"
             />
           </div>
 
@@ -201,10 +193,7 @@ export function UserModal({ mode, user, token, onSuccess, onClose }: Props) {
               maxLength={128}
               disabled={isLoading}
               placeholder={mode === 'create' ? 'Minimal 8 karakter' : '••••••••'}
-              className="rounded-xl px-4 py-3 font-body text-[14px] outline-none transition-all"
-              style={inputStyle}
-              onFocus={e => { (e.currentTarget as HTMLInputElement).style.borderColor = '#93C5FD'; }}
-              onBlur={e => { (e.currentTarget as HTMLInputElement).style.borderColor = '#E2E8F0'; }}
+              className="px-4 py-3 input-field"
             />
           </div>
 
@@ -215,8 +204,7 @@ export function UserModal({ mode, user, token, onSuccess, onClose }: Props) {
               value={role}
               onChange={e => setRole(e.target.value as 'admin' | 'user')}
               disabled={isLoading}
-              className="rounded-xl px-4 py-3 font-body text-[14px] outline-none transition-all"
-              style={inputStyle}
+              className="px-4 py-3 input-field"
             >
               <option value="user">User</option>
               <option value="admin">Admin</option>
@@ -284,10 +272,8 @@ export function UserModal({ mode, user, token, onSuccess, onClose }: Props) {
                     onChange={e => setTrialExpiresAt(e.target.value)}
                     required
                     disabled={isLoading}
-                    className="rounded-xl px-4 py-2.5 font-body text-[13px] outline-none transition-all"
-                    style={{ ...inputStyle, background: '#FFFFFF' }}
-                    onFocus={e => { (e.currentTarget as HTMLInputElement).style.borderColor = '#93C5FD'; }}
-                    onBlur={e => { (e.currentTarget as HTMLInputElement).style.borderColor = '#E2E8F0'; }}
+                    className="px-4 py-2.5 input-field"
+                    style={{ background: '#FFFFFF' }}
                   />
                 </div>
               )}
@@ -307,10 +293,8 @@ export function UserModal({ mode, user, token, onSuccess, onClose }: Props) {
                       onChange={e => setTrialDuration(Math.max(1, parseInt(e.target.value, 10) || 1))}
                       required
                       disabled={isLoading}
-                      className="w-24 rounded-xl px-4 py-2.5 font-mono text-[14px] outline-none transition-all text-center"
-                      style={{ ...inputStyle, background: '#FFFFFF' }}
-                      onFocus={e => { (e.currentTarget as HTMLInputElement).style.borderColor = '#93C5FD'; }}
-                      onBlur={e => { (e.currentTarget as HTMLInputElement).style.borderColor = '#E2E8F0'; }}
+                      className="w-24 px-4 py-2.5 font-mono text-[14px] text-center input-field"
+                      style={{ background: '#FFFFFF' }}
                     />
                     <select
                       value={trialUnit}
@@ -321,8 +305,8 @@ export function UserModal({ mode, user, token, onSuccess, onClose }: Props) {
                         if (next === 'hari' && trialDuration > 365) setTrialDuration(7);
                       }}
                       disabled={isLoading}
-                      className="flex-1 rounded-xl px-4 py-2.5 font-body text-[13px] outline-none transition-all"
-                      style={{ ...inputStyle, background: '#FFFFFF' }}
+                      className="flex-1 px-4 py-2.5 text-[13px] input-field"
+                      style={{ background: '#FFFFFF' }}
                     >
                       <option value="jam">Jam</option>
                       <option value="hari">Hari</option>
@@ -356,18 +340,7 @@ export function UserModal({ mode, user, token, onSuccess, onClose }: Props) {
           )}
 
           {/* Error */}
-          {error && (
-            <div
-              className="flex items-center gap-3 rounded-xl px-4 py-3 animate-error-in"
-              style={{ background: '#FEF2F2', border: '1px solid #FECACA' }}
-            >
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="flex-shrink-0">
-                <circle cx="8" cy="8" r="7" stroke="#EF4444" strokeWidth="1.5"/>
-                <path d="M8 5v4M8 11v.5" stroke="#EF4444" strokeWidth="1.5" strokeLinecap="round"/>
-              </svg>
-              <span className="font-body text-[13px] break-words" style={{ color: '#DC2626' }}>{error}</span>
-            </div>
-          )}
+          {error && <ErrorBanner message={error} />}
 
           {/* Actions */}
           <div className="flex gap-3 mt-2">

@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from 'react';
 import { useAuth } from '../../hooks/useAuth';
+import { ErrorBanner } from '../ui/ErrorBanner';
 import bniLogo from '../../assets/logo/BNI.jpg';
 import briLogo from '../../assets/logo/bri.png';
 import mandiriLogo from '../../assets/logo/mandiri.png';
@@ -117,14 +118,7 @@ export function LoginPage() {
                 autoComplete="username"
                 placeholder="Masukkan username"
                 disabled={isLoading}
-                className="w-full rounded-xl px-4 py-3 font-body text-[14px] outline-none transition-all"
-                style={{
-                  background: '#F8FAFC',
-                  border: '1.5px solid #E2E8F0',
-                  color: '#0F172A',
-                }}
-                onFocus={e => { e.currentTarget.style.borderColor = '#3B82F6'; e.currentTarget.style.background = '#FFFFFF'; }}
-                onBlur={e => { e.currentTarget.style.borderColor = '#E2E8F0'; e.currentTarget.style.background = '#F8FAFC'; }}
+                className="px-4 py-3 input-field"
               />
             </div>
 
@@ -140,29 +134,11 @@ export function LoginPage() {
                 autoComplete="current-password"
                 placeholder="Masukkan password"
                 disabled={isLoading}
-                className="w-full rounded-xl px-4 py-3 font-body text-[14px] outline-none transition-all"
-                style={{
-                  background: '#F8FAFC',
-                  border: '1.5px solid #E2E8F0',
-                  color: '#0F172A',
-                }}
-                onFocus={e => { e.currentTarget.style.borderColor = '#3B82F6'; e.currentTarget.style.background = '#FFFFFF'; }}
-                onBlur={e => { e.currentTarget.style.borderColor = '#E2E8F0'; e.currentTarget.style.background = '#F8FAFC'; }}
+                className="px-4 py-3 input-field"
               />
             </div>
 
-            {error && (
-              <div
-                className="flex items-center gap-3 rounded-xl px-4 py-3 animate-error-in"
-                style={{ background: '#FEF2F2', border: '1px solid #FECACA' }}
-              >
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="flex-shrink-0">
-                  <circle cx="8" cy="8" r="7" stroke="#EF4444" strokeWidth="1.5"/>
-                  <path d="M8 5v4M8 11v.5" stroke="#EF4444" strokeWidth="1.5" strokeLinecap="round"/>
-                </svg>
-                <span className="font-body text-[13px] break-words" style={{ color: '#DC2626' }}>{error}</span>
-              </div>
-            )}
+            {error && <ErrorBanner message={error} />}
 
             <button
               type="submit"

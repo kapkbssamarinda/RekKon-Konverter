@@ -1,4 +1,5 @@
 import type { BankStatement } from '../parsers/types';
+import { IconBox } from './ui/IconBox';
 
 interface Props {
   statements: BankStatement[];
@@ -25,14 +26,11 @@ export function PreviewTable({ statements }: Props) {
     <div className="animate-fade-in-up">
       {/* Section Header */}
       <div className="flex items-center gap-3 mb-5">
-        <div 
-          className="w-9 h-9 rounded-lg flex items-center justify-center"
-          style={{ background: 'linear-gradient(135deg, #1E293B 0%, #334155 100%)' }}
-        >
+        <IconBox size="sm" bg="linear-gradient(135deg, #1E293B 0%, #334155 100%)">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path d="M2 4h12M2 8h12M2 12h8" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
           </svg>
-        </div>
+        </IconBox>
         <div>
           <h2 className="font-headline font-semibold text-lg" style={{ color: '#0F172A' }}>
             Transaction Preview

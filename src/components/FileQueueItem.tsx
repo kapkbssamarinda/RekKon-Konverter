@@ -1,4 +1,5 @@
 import type { FileItem } from '../hooks/useFileProcessor';
+import { IconBox } from './ui/IconBox';
 
 const BANK_CONFIG: Record<string, { bg: string; text: string; border: string }> = {
   'Mandiri': { bg: '#FFFBEB', text: '#D97706', border: '#FDE68A' },
@@ -67,32 +68,21 @@ export function FileQueueItem({ item, onRemove }: Props) {
     >
       <div className="flex items-center gap-3">
         {/* Bank Icon */}
-        <div className="flex-shrink-0">
-          {bankConfig ? (
-            <div 
-              className="w-10 h-10 rounded-lg flex items-center justify-center"
-              style={{ 
-                background: bankConfig.bg,
-                border: `1px solid ${bankConfig.border}`
-              }}
-            >
-              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                <rect x="2" y="5" width="14" height="8" rx="1.5" stroke={bankConfig.text} strokeWidth="1.5"/>
-                <path d="M2 7.5h14M5 5V3M13 5V3" stroke={bankConfig.text} strokeWidth="1.5" strokeLinecap="round"/>
-              </svg>
-            </div>
-          ) : (
-            <div 
-              className="w-10 h-10 rounded-lg flex items-center justify-center"
-              style={{ background: '#F1F5F9' }}
-            >
-              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                <path d="M3 4v10a1 1 0 001 1h10a1 1 0 001-1V7l-4-3H4a1 1 0 00-1 1z" stroke="#94A3B8" strokeWidth="1.5"/>
-                <path d="M9 2v4h4" stroke="#94A3B8" strokeWidth="1.5" strokeLinecap="round"/>
-              </svg>
-            </div>
-          )}
-        </div>
+        {bankConfig ? (
+          <IconBox size="md" bg={bankConfig.bg} border={`1px solid ${bankConfig.border}`}>
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <rect x="2" y="5" width="14" height="8" rx="1.5" stroke={bankConfig.text} strokeWidth="1.5"/>
+              <path d="M2 7.5h14M5 5V3M13 5V3" stroke={bankConfig.text} strokeWidth="1.5" strokeLinecap="round"/>
+            </svg>
+          </IconBox>
+        ) : (
+          <IconBox size="md" bg="#F1F5F9">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path d="M3 4v10a1 1 0 001 1h10a1 1 0 001-1V7l-4-3H4a1 1 0 00-1 1z" stroke="#94A3B8" strokeWidth="1.5"/>
+              <path d="M9 2v4h4" stroke="#94A3B8" strokeWidth="1.5" strokeLinecap="round"/>
+            </svg>
+          </IconBox>
+        )}
 
         {/* File Info */}
         <div className="flex-1 min-w-0">

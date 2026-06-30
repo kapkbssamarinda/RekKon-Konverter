@@ -1,5 +1,6 @@
 import type { BankStatement } from '../parsers/types';
 import type { FileItem } from '../hooks/useFileProcessor';
+import { IconBox } from './ui/IconBox';
 
 interface Props {
   statements: BankStatement[];
@@ -37,11 +38,11 @@ export function SummaryBar({ statements, files, onExport, onReset }: Props) {
           {/* Stats */}
           <div className="flex items-center gap-8">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: '#EFF6FF' }}>
+              <IconBox size="sm" bg="#EFF6FF">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <path d="M2 4h12M2 8h12M2 12h8" stroke="#2563EB" strokeWidth="1.5" strokeLinecap="round"/>
                 </svg>
-              </div>
+              </IconBox>
               <div>
                 <p className="font-mono text-[18px] font-semibold" style={{ color: '#0F172A' }}>{totalTx.toLocaleString('id-ID')}</p>
                 <p className="font-body text-[11px]" style={{ color: '#64748B' }}>Transactions</p>
@@ -49,12 +50,12 @@ export function SummaryBar({ statements, files, onExport, onReset }: Props) {
             </div>
             <div className="w-[1px] h-8" style={{ background: '#E2E8F0' }} />
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: '#F3E8FF' }}>
+              <IconBox size="sm" bg="#F3E8FF">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <rect x="2" y="4" width="12" height="8" rx="1.5" stroke="#9333EA" strokeWidth="1.5"/>
                   <path d="M2 6.5h12M5 4V2.5M11 4V2.5" stroke="#9333EA" strokeWidth="1.5" strokeLinecap="round"/>
                 </svg>
-              </div>
+              </IconBox>
               <div>
                 <p className="font-mono text-[18px] font-semibold" style={{ color: '#0F172A' }}>{banks}</p>
                 <p className="font-body text-[11px]" style={{ color: '#64748B' }}>Banks</p>
@@ -62,12 +63,12 @@ export function SummaryBar({ statements, files, onExport, onReset }: Props) {
             </div>
             <div className="w-[1px] h-8" style={{ background: '#E2E8F0' }} />
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: '#ECFDF5' }}>
+              <IconBox size="sm" bg="#ECFDF5">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <path d="M3 3v10a1 1 0 001 1h8a1 1 0 001-1V6l-4-3H4a1 1 0 00-1 1z" stroke="#059669" strokeWidth="1.5"/>
                   <path d="M8 2v3.5h3.5" stroke="#059669" strokeWidth="1.5" strokeLinecap="round"/>
                 </svg>
-              </div>
+              </IconBox>
               <div>
                 <p className="font-mono text-[18px] font-semibold" style={{ color: '#0F172A' }}>{doneFiles}</p>
                 <p className="font-body text-[11px]" style={{ color: '#64748B' }}>Files</p>

@@ -308,6 +308,29 @@ body {
 }
 
 
+/* Input Field — shared style for all text/password/select/date inputs */
+.input-field {
+  background: #F8FAFC;
+  border: 1.5px solid var(--color-border);
+  color: var(--color-text-primary);
+  border-radius: 0.75rem;
+  font-family: var(--font-body);
+  font-size: 14px;
+  outline: none;
+  width: 100%;
+  transition: border-color 0.15s var(--ease-out-quart), background 0.15s var(--ease-out-quart);
+}
+
+.input-field:focus {
+  border-color: #93C5FD;
+  background: #FFFFFF;
+}
+
+.input-field:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 /* ═══════════════════════════════════════════════════════════════════
    CUSTOM SCROLLBAR
 ═══════════════════════════════════════════════════════════════════ */

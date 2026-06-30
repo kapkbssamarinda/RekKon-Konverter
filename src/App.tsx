@@ -7,6 +7,8 @@ import { StepIndicator } from './components/StepIndicator';
 import { SupportedBanks } from './components/SupportedBanks';
 import { LoginPage } from './components/auth/LoginPage';
 import { AdminPage } from './components/admin/AdminPage';
+import { LoadingDots } from './components/ui/LoadingDots';
+import { IconBox } from './components/ui/IconBox';
 import { useFileProcessor } from './hooks/useFileProcessor';
 import { useAuth } from './hooks/useAuth';
 import { exportToExcel } from './services/excelExporter';
@@ -20,24 +22,18 @@ function LoadingScreen() {
       style={{ background: 'linear-gradient(180deg, #0F172A 0%, #1E293B 100%)' }}
     >
       <div className="flex flex-col items-center gap-4">
-        <div
-          className="w-14 h-14 rounded-2xl flex items-center justify-center"
-          style={{
-            background: 'linear-gradient(135deg, rgba(59,130,246,0.2) 0%, rgba(59,130,246,0.1) 100%)',
-            border: '1px solid rgba(59,130,246,0.3)',
-          }}
+        <IconBox
+          size="xl"
+          bg="linear-gradient(135deg, rgba(59,130,246,0.2) 0%, rgba(59,130,246,0.1) 100%)"
+          border="1px solid rgba(59,130,246,0.3)"
         >
           <svg width="26" height="26" viewBox="0 0 22 22" fill="none">
             <rect x="2" y="4" width="18" height="14" rx="2" stroke="#60A5FA" strokeWidth="1.5"/>
             <path d="M5 9h12M5 13h8" stroke="#60A5FA" strokeWidth="1.5" strokeLinecap="round"/>
             <circle cx="17" cy="13" r="1.5" fill="#34D399"/>
           </svg>
-        </div>
-        <div className="flex gap-1.5">
-          <div className="w-2 h-2 rounded-full animate-dot-fade" style={{ background: '#3B82F6', animationDelay: '0ms' }} />
-          <div className="w-2 h-2 rounded-full animate-dot-fade" style={{ background: '#3B82F6', animationDelay: '200ms' }} />
-          <div className="w-2 h-2 rounded-full animate-dot-fade" style={{ background: '#3B82F6', animationDelay: '400ms' }} />
-        </div>
+        </IconBox>
+        <LoadingDots />
       </div>
     </div>
   );
@@ -252,10 +248,7 @@ function App() {
             boxShadow: '0 1px 3px rgba(15, 23, 42, 0.04)',
           }}
         >
-          <div
-            className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
-            style={{ background: '#EFF6FF' }}
-          >
+          <IconBox size="md" bg="#EFF6FF">
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
               <path
                 d="M9 2L3 5.5V9c0 3 2.5 4.5 6 6 3.5-1.5 6-3 6-6V5.5L9 2Z"
@@ -265,7 +258,7 @@ function App() {
               />
               <path d="M6.5 9l2 2 3-3" stroke="#2563EB" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
-          </div>
+          </IconBox>
           <div>
             <p className="font-body font-medium text-[13px]" style={{ color: '#0F172A' }}>
               100% Private & Secure

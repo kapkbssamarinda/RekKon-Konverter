@@ -9,7 +9,7 @@ const BANKS: BankEntry[] = [
   { name: 'Bank Mandiri', status: 'supported' },
   { name: 'Bank BNI', status: 'supported' },
   { name: 'Bank BRI', status: 'supported' },
-  { name: 'Bank BCA', status: 'coming-soon' },
+  { name: 'Bank BCA', status: 'supported' },
   { name: 'SMBC Indonesia', status: 'coming-soon' },
 ];
 

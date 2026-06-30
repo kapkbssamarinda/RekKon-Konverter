@@ -1,5 +1,17 @@
 import { useState, type FormEvent } from 'react';
 import { useAuth } from '../../hooks/useAuth';
+import bniLogo from '../../assets/logo/BNI.jpg';
+import briLogo from '../../assets/logo/bri.png';
+import mandiriLogo from '../../assets/logo/mandiri.png';
+
+const BANKS = [
+  { src: bniLogo, name: 'BNI' },
+  { src: briLogo, name: 'BRI' },
+  { src: mandiriLogo, name: 'Bank Mandiri' },
+];
+
+// duplicate for seamless loop
+const MARQUEE_ITEMS = [...BANKS, ...BANKS];
 
 export function LoginPage() {
   const { login } = useAuth();
@@ -169,6 +181,50 @@ export function LoginPage() {
               {isLoading ? 'Memverifikasi...' : 'Masuk'}
             </button>
           </form>
+        </div>
+      </div>
+
+      {/* Bank Logos Marquee */}
+      <div style={{ background: '#F8FAFC', borderTop: '1px solid #F1F5F9' }}>
+        <p
+          className="text-center font-body uppercase tracking-widest pt-4 pb-3"
+          style={{ fontSize: '10px', color: '#CBD5E1', letterSpacing: '0.14em' }}
+        >
+          Format rekening koran yang didukung
+        </p>
+        <div className="relative overflow-hidden pb-5">
+          {/* Left fade mask */}
+          <div
+            className="absolute inset-y-0 left-0 w-20 z-10 pointer-events-none"
+            style={{ background: 'linear-gradient(to right, #F8FAFC, transparent)' }}
+          />
+          {/* Right fade mask */}
+          <div
+            className="absolute inset-y-0 right-0 w-20 z-10 pointer-events-none"
+            style={{ background: 'linear-gradient(to left, #F8FAFC, transparent)' }}
+          />
+          {/* Scrolling track */}
+          <div className="flex animate-marquee" style={{ width: 'max-content' }}>
+            {MARQUEE_ITEMS.map((bank, i) => (
+              <div
+                key={i}
+                className="flex items-center justify-center"
+                style={{ padding: '0 52px', flexShrink: 0 }}
+              >
+                <img
+                  src={bank.src}
+                  alt={bank.name}
+                  style={{
+                    height: '28px',
+                    width: 'auto',
+                    maxWidth: '100px',
+                    objectFit: 'contain',
+                    opacity: 0.45,
+                  }}
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>

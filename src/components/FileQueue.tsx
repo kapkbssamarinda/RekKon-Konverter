@@ -34,7 +34,9 @@ export function FileQueue({ files, onRemove }: Props) {
   return (
     <div className="flex flex-col gap-3">
       {files.map(item => (
-        <FileQueueItem key={item.id} item={item} onRemove={onRemove} />
+        <div key={item.id} className="animate-item-in">
+          <FileQueueItem item={item} onRemove={onRemove} />
+        </div>
       ))}
     </div>
   );

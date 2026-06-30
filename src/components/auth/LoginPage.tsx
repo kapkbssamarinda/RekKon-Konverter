@@ -153,7 +153,7 @@ export function LoginPage() {
 
             {error && (
               <div
-                className="flex items-center gap-3 rounded-xl px-4 py-3"
+                className="flex items-center gap-3 rounded-xl px-4 py-3 animate-error-in"
                 style={{ background: '#FEF2F2', border: '1px solid #FECACA' }}
               >
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="flex-shrink-0">
@@ -167,7 +167,7 @@ export function LoginPage() {
             <button
               type="submit"
               disabled={isLoading || !username || !password}
-              className="mt-2 w-full rounded-xl py-3.5 font-body font-semibold text-[14px] text-white transition-all"
+              className="mt-2 w-full rounded-xl py-3.5 font-body font-semibold text-[14px] text-white transition-all active:scale-[0.98]"
               style={{
                 background: isLoading || !username || !password
                   ? '#94A3B8'

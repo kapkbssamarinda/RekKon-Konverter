@@ -82,7 +82,11 @@ export function PreviewTable({ statements }: Props) {
                     hover:bg-slate-50
                     ${idx % 2 === 0 ? 'bg-white' : 'bg-slate-50/50'}
                   `}
-                  style={{ borderBottom: idx < displayed.length - 1 ? '1px solid #F1F5F9' : 'none' }}
+                  style={{
+                    borderBottom: idx < displayed.length - 1 ? '1px solid #F1F5F9' : 'none',
+                    animation: 'fadeInUp 250ms cubic-bezier(0.25, 1, 0.5, 1) both',
+                    animationDelay: `${Math.min(idx, 12) * 25}ms`,
+                  }}
                 >
                   <td className="px-4 py-3">
                     <span className="font-mono text-[13px]" style={{ color: '#475569' }}>

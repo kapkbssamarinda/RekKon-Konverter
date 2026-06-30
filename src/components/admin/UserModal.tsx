@@ -249,7 +249,7 @@ export function UserModal({ mode, user, token, onSuccess, onClose }: Props) {
           {/* Trial Expiry Config */}
           {isTrial && (
             <div
-              className="flex flex-col gap-3 rounded-xl p-4"
+              className="flex flex-col gap-3 rounded-xl p-4 animate-fade-in-scale"
               style={{ background: '#F8FAFC', border: '1px solid #E2E8F0' }}
             >
               {/* Mode selector */}
@@ -358,7 +358,7 @@ export function UserModal({ mode, user, token, onSuccess, onClose }: Props) {
           {/* Error */}
           {error && (
             <div
-              className="flex items-center gap-3 rounded-xl px-4 py-3"
+              className="flex items-center gap-3 rounded-xl px-4 py-3 animate-error-in"
               style={{ background: '#FEF2F2', border: '1px solid #FECACA' }}
             >
               <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="flex-shrink-0">
@@ -383,7 +383,7 @@ export function UserModal({ mode, user, token, onSuccess, onClose }: Props) {
             <button
               type="submit"
               disabled={isLoading}
-              className="flex-1 rounded-xl py-3 font-body font-semibold text-[14px] text-white"
+              className="flex-1 rounded-xl py-3 font-body font-semibold text-[14px] text-white transition-transform active:scale-[0.98]"
               style={{
                 background: isLoading ? '#94A3B8' : 'linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%)',
                 boxShadow: isLoading ? 'none' : '0 4px 12px rgba(37,99,235,0.35)',

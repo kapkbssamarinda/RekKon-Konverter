@@ -118,12 +118,13 @@ export function FileQueueItem({ item, onRemove }: Props) {
         </div>
 
         {/* Status */}
-        <div 
+        <div
           className="flex-shrink-0 flex items-center gap-1.5 rounded-full px-3 py-1.5 font-body text-[12px] font-medium"
-          style={{ 
+          style={{
             background: status.bg,
             border: `1px solid ${status.border}`,
-            color: status.text
+            color: status.text,
+            transition: 'background 0.2s cubic-bezier(0.25, 1, 0.5, 1), color 0.2s, border-color 0.2s',
           }}
         >
           <span 
@@ -162,10 +163,12 @@ export function FileQueueItem({ item, onRemove }: Props) {
       {item.status === 'processing' && (
         <div className="mt-3 h-[3px] rounded-full overflow-hidden" style={{ background: '#F1F5F9' }}>
           <div
-            className="h-full rounded-full relative overflow-hidden"
-            style={{ 
-              width: `${item.progress}%`,
-              background: 'linear-gradient(90deg, #3B82F6 0%, #2563EB 100%)'
+            className="h-full w-full rounded-full relative overflow-hidden"
+            style={{
+              background: 'linear-gradient(90deg, #3B82F6 0%, #2563EB 100%)',
+              transform: `scaleX(${item.progress / 100})`,
+              transformOrigin: 'left',
+              transition: 'transform 0.35s cubic-bezier(0.25, 1, 0.5, 1)',
             }}
           >
             <div 
@@ -180,8 +183,8 @@ export function FileQueueItem({ item, onRemove }: Props) {
 
       {/* Error Message */}
       {item.status === 'error' && item.errorMsg && (
-        <div 
-          className="mt-3 p-2.5 rounded-lg"
+        <div
+          className="mt-3 p-2.5 rounded-lg animate-error-in"
           style={{ background: '#FEF2F2', border: '1px solid #FECACA' }}
         >
           <p className="font-body text-[12px]" style={{ color: '#DC2626' }}>

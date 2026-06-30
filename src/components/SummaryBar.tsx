@@ -79,7 +79,7 @@ export function SummaryBar({ statements, files, onExport, onReset }: Props) {
             {files.length > 0 && (
               <button
                 onClick={onReset}
-                className="font-body font-medium rounded-xl px-5 h-11 transition-all duration-200 hover-lift"
+                className="font-body font-medium rounded-xl px-5 h-11 transition-all duration-200 hover-lift active:scale-[0.97]"
                 style={{ background: '#FFFFFF', color: '#64748B', border: '1px solid #E2E8F0' }}
               >
                 Reset
@@ -88,7 +88,7 @@ export function SummaryBar({ statements, files, onExport, onReset }: Props) {
             <button
               onClick={onExport}
               disabled={!hasResults}
-              className="font-body font-medium rounded-xl px-5 h-11 flex items-center gap-2 transition-all duration-200 disabled:cursor-not-allowed hover-lift"
+              className="font-body font-medium rounded-xl px-5 h-11 flex items-center gap-2 transition-all duration-200 disabled:cursor-not-allowed hover-lift active:scale-[0.97]"
               style={{
                 background: hasResults ? 'linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%)' : '#E2E8F0',
                 color: hasResults ? '#FFFFFF' : '#94A3B8',
@@ -123,7 +123,7 @@ export function SummaryBar({ statements, files, onExport, onReset }: Props) {
           {files.length > 0 && (
             <button
               onClick={onReset}
-              className="flex-shrink-0 font-body font-medium rounded-xl px-4 h-11 transition-all duration-200"
+              className="flex-shrink-0 font-body font-medium rounded-xl px-4 h-11 transition-all duration-200 active:scale-[0.97]"
               style={{ background: '#FFFFFF', color: '#64748B', border: '1px solid #E2E8F0' }}
             >
               Reset
@@ -132,7 +132,7 @@ export function SummaryBar({ statements, files, onExport, onReset }: Props) {
           <button
             onClick={onExport}
             disabled={!hasResults}
-            className="flex-1 font-body font-semibold rounded-xl h-11 flex items-center justify-center gap-2 transition-all duration-200 disabled:cursor-not-allowed"
+            className="flex-1 font-body font-semibold rounded-xl h-11 flex items-center justify-center gap-2 transition-all duration-200 disabled:cursor-not-allowed active:scale-[0.97]"
             style={{
               background: hasResults ? 'linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%)' : '#E2E8F0',
               color: hasResults ? '#FFFFFF' : '#94A3B8',

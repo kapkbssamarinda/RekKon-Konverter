@@ -67,8 +67,8 @@ export function LoginPage() {
         </div>
       </header>
 
-      {/* Login Card */}
-      <div className="flex-1 flex items-center justify-center px-6 py-12">
+      {/* Login Card + Marquee — centered together */}
+      <div className="flex-1 flex flex-col items-center justify-center px-6 py-10 gap-8">
         <div
           className="w-full max-w-[420px] animate-fade-in-scale"
           style={{
@@ -172,40 +172,40 @@ export function LoginPage() {
             </button>
           </form>
         </div>
-      </div>
 
-      {/* Bank Logos Marquee */}
-      <div style={{ background: '#F0F7FF', borderTop: '1px solid #E2E8F0' }}>
-        <p
-          className="text-center font-body pt-4 pb-3"
-          style={{ fontSize: '11px', color: '#64748B', fontWeight: 600, letterSpacing: '0.06em' }}
-        >
-          FORMAT REKENING KORAN YANG DIDUKUNG
-        </p>
-        <p className="sr-only">BNI, BRI, Bank Mandiri</p>
-        <div className="relative overflow-hidden pb-5" aria-hidden="true">
-          <div
-            className="absolute inset-y-0 left-0 w-20 z-10 pointer-events-none"
-            style={{ background: 'linear-gradient(to right, #F0F7FF, transparent)' }}
-          />
-          <div
-            className="absolute inset-y-0 right-0 w-20 z-10 pointer-events-none"
-            style={{ background: 'linear-gradient(to left, #F0F7FF, transparent)' }}
-          />
-          <div className="flex animate-marquee" style={{ width: 'max-content' }}>
-            {MARQUEE_ITEMS.map((bank, i) => (
-              <div
-                key={i}
-                className="flex items-center justify-center"
-                style={{ padding: '0 52px', flexShrink: 0 }}
-              >
-                <img
-                  src={bank.src}
-                  alt=""
-                  style={{ height: '28px', width: 'auto', maxWidth: '100px', objectFit: 'contain', opacity: 0.5 }}
-                />
-              </div>
-            ))}
+        {/* Bank Logos Marquee */}
+        <div className="w-full max-w-[420px] animate-fade-in-up" style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid #E2E8F0' }}>
+          <p
+            className="text-center font-body pt-3 pb-2"
+            style={{ fontSize: '11px', color: '#94A3B8', fontWeight: 600, letterSpacing: '0.07em', background: '#F0F7FF' }}
+          >
+            FORMAT YANG DIDUKUNG
+          </p>
+          <p className="sr-only">BNI, BRI, Bank Mandiri</p>
+          <div className="relative overflow-hidden py-3" style={{ background: '#F0F7FF' }} aria-hidden="true">
+            <div
+              className="absolute inset-y-0 left-0 w-14 z-10 pointer-events-none"
+              style={{ background: 'linear-gradient(to right, #F0F7FF, transparent)' }}
+            />
+            <div
+              className="absolute inset-y-0 right-0 w-14 z-10 pointer-events-none"
+              style={{ background: 'linear-gradient(to left, #F0F7FF, transparent)' }}
+            />
+            <div className="flex animate-marquee" style={{ width: 'max-content' }}>
+              {MARQUEE_ITEMS.map((bank, i) => (
+                <div
+                  key={i}
+                  className="flex items-center justify-center"
+                  style={{ padding: '0 40px', flexShrink: 0 }}
+                >
+                  <img
+                    src={bank.src}
+                    alt=""
+                    style={{ height: '26px', width: 'auto', maxWidth: '90px', objectFit: 'contain', opacity: 0.45 }}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

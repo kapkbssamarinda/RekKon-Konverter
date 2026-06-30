@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(New-Item -ItemType Directory -Force \"d:\\\\Coding\\\\project-rekening-koran\\\\rk-converter\\\\src\\\\parsers\")",
+      "PowerShell(New-Item -ItemType Directory -Force \"d:\\\\Coding\\\\project-rekening-koran\\\\rk-converter\\\\src\\\\services\")",
+      "PowerShell(New-Item -ItemType Directory -Force \"d:\\\\Coding\\\\project-rekening-koran\\\\rk-converter\\\\src\\\\hooks\")",
+      "PowerShell(New-Item -ItemType Directory -Force \"d:\\\\Coding\\\\project-rekening-koran\\\\rk-converter\\\\src\\\\components\")",
+      "Bash(curl -s http://localhost:5173/)"
+    ]
+  }
+}

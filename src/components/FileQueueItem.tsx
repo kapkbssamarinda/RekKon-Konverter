@@ -51,7 +51,10 @@ export function FileQueueItem({ item, onRemove }: Props) {
   };
 
   const status = statusConfig();
-  const fileSizeKb = Math.round(item.file.size / 1024);
+  const fileSizeKb = item.file.size / 1024;
+  const fileSizeLabel = fileSizeKb >= 1024
+    ? `${(fileSizeKb / 1024).toFixed(1)} MB`
+    : `${Math.round(fileSizeKb)} KB`;
 
   return (
     <div 
@@ -98,7 +101,7 @@ export function FileQueueItem({ item, onRemove }: Props) {
           </p>
           <div className="flex items-center gap-2 mt-0.5">
             <span className="font-body text-[12px]" style={{ color: '#64748B' }}>
-              {fileSizeKb} KB
+              {fileSizeLabel}
             </span>
             {bankConfig && (
               <>

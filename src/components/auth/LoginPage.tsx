@@ -25,7 +25,7 @@ export function LoginPage() {
     setError(null);
     setIsLoading(true);
     try {
-      await login(username, password);
+      await login(username.trim(), password);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Login gagal');
     } finally {
@@ -160,7 +160,7 @@ export function LoginPage() {
                   <circle cx="8" cy="8" r="7" stroke="#EF4444" strokeWidth="1.5"/>
                   <path d="M8 5v4M8 11v.5" stroke="#EF4444" strokeWidth="1.5" strokeLinecap="round"/>
                 </svg>
-                <span className="font-body text-[13px]" style={{ color: '#DC2626' }}>{error}</span>
+                <span className="font-body text-[13px] break-words" style={{ color: '#DC2626' }}>{error}</span>
               </div>
             )}
 

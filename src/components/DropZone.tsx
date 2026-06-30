@@ -38,17 +38,30 @@ export function DropZone({ onFiles, disabled }: Props) {
 
   const isActive = isDragging && !disabled;
 
+  function handleKeyDown(e: React.KeyboardEvent<HTMLDivElement>) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleClick();
+    }
+  }
+
   return (
     <div
       onClick={handleClick}
       onDrop={handleDrop}
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
+      onKeyDown={handleKeyDown}
+      role="button"
+      tabIndex={disabled ? -1 : 0}
+      aria-label="Upload PDF rekening koran — klik atau tekan Enter untuk pilih file"
+      aria-disabled={disabled}
       className={`
-        relative flex flex-col items-center justify-center 
-        rounded-2xl cursor-pointer 
+        relative flex flex-col items-center justify-center
+        rounded-2xl cursor-pointer
         transition-all duration-300 ease-out
         select-none min-h-[220px] p-6
+        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2
         ${isActive ? 'scale-[1.01]' : ''}
         ${disabled ? 'cursor-not-allowed opacity-50' : ''}
       `}

@@ -19,7 +19,7 @@ function Toggle({
       <div>
         <p className="font-body font-medium text-[13px]" style={{ color: '#374151' }}>{label}</p>
         {description && (
-          <p className="font-body text-[11px] mt-0.5" style={{ color: '#94A3B8' }}>{description}</p>
+          <p className="font-body text-[11px] mt-0.5" style={{ color: '#64748B' }}>{description}</p>
         )}
       </div>
       <button
@@ -94,7 +94,7 @@ export function UserModal({ mode, user, token, onSuccess, onClose }: Props) {
 
     try {
       const body: Record<string, unknown> = {
-        username,
+        username: username.trim(),
         role,
         isTrial,
         trialExpiresAt: expiresAt,
@@ -172,8 +172,11 @@ export function UserModal({ mode, user, token, onSuccess, onClose }: Props) {
               value={username}
               onChange={e => setUsername(e.target.value)}
               required
+              autoFocus
+              minLength={3}
+              maxLength={32}
               disabled={isLoading}
-              placeholder="Masukkan username"
+              placeholder="Masukkan username (3–32 karakter)"
               className="rounded-xl px-4 py-3 font-body text-[14px] outline-none transition-all"
               style={inputStyle}
               onFocus={e => { (e.currentTarget as HTMLInputElement).style.borderColor = '#93C5FD'; }}
@@ -194,8 +197,10 @@ export function UserModal({ mode, user, token, onSuccess, onClose }: Props) {
               value={password}
               onChange={e => setPassword(e.target.value)}
               required={mode === 'create'}
+              minLength={mode === 'create' ? 8 : undefined}
+              maxLength={128}
               disabled={isLoading}
-              placeholder={mode === 'create' ? 'Masukkan password' : '••••••••'}
+              placeholder={mode === 'create' ? 'Minimal 8 karakter' : '••••••••'}
               className="rounded-xl px-4 py-3 font-body text-[14px] outline-none transition-all"
               style={inputStyle}
               onFocus={e => { (e.currentTarget as HTMLInputElement).style.borderColor = '#93C5FD'; }}
@@ -360,7 +365,7 @@ export function UserModal({ mode, user, token, onSuccess, onClose }: Props) {
                 <circle cx="8" cy="8" r="7" stroke="#EF4444" strokeWidth="1.5"/>
                 <path d="M8 5v4M8 11v.5" stroke="#EF4444" strokeWidth="1.5" strokeLinecap="round"/>
               </svg>
-              <span className="font-body text-[13px]" style={{ color: '#DC2626' }}>{error}</span>
+              <span className="font-body text-[13px] break-words" style={{ color: '#DC2626' }}>{error}</span>
             </div>
           )}
 

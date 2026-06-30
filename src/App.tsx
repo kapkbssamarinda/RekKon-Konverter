@@ -21,7 +21,7 @@ function LoadingScreen() {
     >
       <div className="flex flex-col items-center gap-4">
         <div
-          className="w-14 h-14 rounded-2xl flex items-center justify-center animate-float"
+          className="w-14 h-14 rounded-2xl flex items-center justify-center"
           style={{
             background: 'linear-gradient(135deg, rgba(59,130,246,0.2) 0%, rgba(59,130,246,0.1) 100%)',
             border: '1px solid rgba(59,130,246,0.3)',
@@ -60,7 +60,12 @@ function App() {
   }, [files, statements]);
 
   function handleExport() {
-    if (statements.length > 0) exportToExcel(statements);
+    if (statements.length === 0) return;
+    try {
+      exportToExcel(statements);
+    } catch (err) {
+      alert(err instanceof Error ? err.message : 'Gagal mengekspor Excel');
+    }
   }
 
   if (status === 'loading') return <LoadingScreen />;
